@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container mb-5">
 	<div class="jumbotron">
 		<a href="home.jsp"><h1>UTB Data Analytic</h1></a>
 	</div>
