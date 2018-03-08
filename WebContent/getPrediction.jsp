@@ -1,10 +1,4 @@
 <jsp:include page="layout/header.jsp"/>
-	<div class="container">
-		<div class="jumbotron">
-			<a href='index.jsp'>
-				<h1>UTB Data Analytic</h1>
-			</a>
-		</div>
 		<form action="ServletInstancePrediction" method="POST">
 		
 			<div class="form-group">
@@ -157,5 +151,4 @@
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
-	</div>
 <jsp:include page="layout/footer.jsp"/>

@@ -1,8 +1,4 @@
 <jsp:include page="layout/header.jsp" />
-<div class="container">
-	<div class="jumbotron">
-		<h1>UTB Data Analytic</h1>
-	</div>
 	<div class="row">
 		<div class="col-md-12 my-2">
 			<h2>Home</h2>
@@ -11,6 +7,16 @@
 		<div class="col-md-12 my-2">
 			<a href="createDataSet.jsp">	
 				<button class="btn btn-block btn-success">Create Data Set</button>
+			</a>
+		</div>
+		<div class="col-md-12 my-2">
+			<a href="numberOfInstancesForm.jsp">	
+				<button class="btn btn-block btn-success">Number of Instances Form (old)</button>
+			</a>
+		</div>
+		<div class="col-md-12 my-2">
+			<a href="getPrediction.jsp">	
+				<button class="btn btn-block btn-success">Get Prediction (old)</button>
 			</a>
 		</div>
 	</div>

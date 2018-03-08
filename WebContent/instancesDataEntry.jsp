@@ -1,10 +1,4 @@
 <jsp:include page="layout/header.jsp"/>
-<div class="container">
-	<div class="jumbotron">
-		<a href='index.jsp'>
-			<h1>UTB Data Analytic</h1>
-		</a>
-	</div>
 	<button onclick='addInstance()' class='btn btn-block btn-primary'>Add Instance</button><br>
 	<form action="ServletPrediction" method="post">
 		<div class="table-responsive">
@@ -186,5 +180,4 @@
 			<button type="submit" class="btn btn-success btn-block">Submit</button>
 		</div>
 	</form>
-</div>
 <jsp:include page="layout/footer.jsp"/>

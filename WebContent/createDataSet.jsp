@@ -1,8 +1,4 @@
 <jsp:include page="layout/header.jsp" />
-<div class="container">
-	<div class="jumbotron">
-		<h1>UTB Data Analytic</h1>
-	</div>
 	<div class="row">
 		<div class="col-md-12 my-2">
 			<h2>Create New Data Set</h2>
@@ -10,8 +6,8 @@
 	</div>
 	<form action="createDataSetForm.jsp" method="post">
 		<div class="form-group">
-			<label for="dataSetName">Data Set Name:</label>
-			<input type="text" class="form-control" id="dataSetName" name="dataSetName"/>
+			<label for="dataSetName">Data Set Name (No Spaces):</label>
+			<input type="text" class="form-control" id="dataSetName" name="dataSetName" id="dataSetName"/>
 		</div>
 		<div class="form-group">
 			<label for="noOfStudents">Number of Students Students:</label>
@@ -20,7 +16,7 @@
 		<h3>Structure</h3>
 		<div id="structureBuilder"></div>
 		<button type="button" class="btn btn-block btn-primary" onclick="addAttribute()">Add Attribute</button>
-		<button type="submit" class="btn btn-block btn-warning">Submit</button>
+		<button type="submit" id="submitButton" class="btn btn-block btn-warning my-5" style="display:none;">Submit</button>
 	</form>
 </div>
 <jsp:include page="layout/footer.jsp" />
@@ -28,17 +24,24 @@
 <script>
 	var count = 0;
 	function addAttribute() {
-		count++;
-		var string = '<div class="form-group"><label for="attributeName">Attribute Name:</label><input type="text" class="form-control" name="attributeName"/></div>';
-		string += '<div class="form-group" id="attribute_'+count+'">'
-			+'<label for="attributeType_'+count+'">Type</label>'
-			+'<select class="form-control" name="attributeType_'+count+'" onchange="attributeSelect($(this).val(), '+count+');">'
-				+'<option>Please Select</option>'
-				+'<option>Nominal</option>'
-				+'<option>Numeric</option>'
-			+'</select>'
-		+'</div><div class="form-group" id="attOption_'+count+'"></div>';
-		$("#structureBuilder").append(string);
+		var regex = /^\S*$/;
+		if (!regex.test($("#dataSetName").val()) || $("#dataSetName").val() == "") {
+			alert("Do not leave the data set name empty and remove any spaces in the data set name!")
+		} else {
+			$("#submitButton").show();
+			$("#submitButton").prop("disabled", true);
+			count++;
+			var string = '<hr><div class="form-group"><strong>Attribute Name No '+count+': </strong><input type="text" class="form-control" name="attributeName" onchange="insertName(this)")/></div>';
+			string += '<div class="form-group" id="attribute_'+count+'">'
+				+'<label for="attributeType_'+count+'">Type</label>'
+				+'<select class="form-control" name="attributeType_'+count+'" onchange="attributeSelect($(this).val(), '+count+');">'
+					+'<option>Please Select</option>'
+					+'<option>Nominal</option>'
+					+'<option>Numeric</option>'
+				+'</select>'
+			+'</div><div class="form-group" id="attOption_'+count+'"></div>';
+			$("#structureBuilder").append(string);	
+		}
 	}
 	
 	function attributeSelect(value, index) {
@@ -58,9 +61,19 @@
 		}
 	}
 	
+	function insertName(a) {
+		if(a.value == null || a.value == "" ) {
+			$("#submitButton").prop("disabled", true);
+		} else {
+			$("#submitButton").prop("disabled", false);
+		}
+	}
+	
+	
 	function addOption(index) {
 		var string = '<div class="form-group"><input type="text" name="option_'+count+'" class="form-control"></div>';
 		$("#insertOption_"+index).append(string);
 	}
+	
 </script>
 
