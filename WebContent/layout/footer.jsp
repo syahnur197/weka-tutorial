@@ -1,7 +1,7 @@
 </div>
 
 <!--Footer-->
-<footer class="page-footer font-small fixed-bottom pt-4" style="background-color: #0d47a1; color: #4285F4; ">
+<footer class="page-footer font-small pt-4" style="background-color: #0d47a1; color: #4285F4; ">
 
     <!--Copyright-->
     <div class="footer-copyright py-3 text-center">

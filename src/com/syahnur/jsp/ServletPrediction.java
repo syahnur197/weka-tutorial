@@ -31,21 +31,23 @@ import weka.core.*;
 	
 		/**
 		 * @throws IOException 
+		 * @throws ServletException 
 		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 		 */
-		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 			response.setContentType("text/html");
 			
-			PrintWriter out = response.getWriter();
+			 PrintWriter out = response.getWriter();
+			 String tableString = "", percentageString = "";
 			
-			out.println("<html><head>");
-			out.println("<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">");
-			out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"></script>");
-			out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js\" integrity=\"sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D\" crossorigin=\"anonymous\"></script>");
-			out.println("</head><body>");
-			out.println("<div class='container'><div class='jumbotron'><a href='index.jsp'><h1>Amazing Prediction Result</h1></a></div><div class='table-responsive'>");
-			out.println("<table class='table table-striped table-hover' style='text-align: center'><tr><th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (NB)</th><th>NB Matches</th></tr>");
-			
+//			out.println("<html><head>");
+//			out.println("<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">");
+//			out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"></script>");
+//			out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js\" integrity=\"sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D\" crossorigin=\"anonymous\"></script>");
+//			out.println("</head><body>");
+//			out.println("<div class='container'><div class='jumbotron'><a href='index.jsp'><h1>Amazing Prediction Result</h1></a></div><div class='table-responsive'>");
+//			out.println("<table class='table table-striped table-hover' style='text-align: center'><tr><th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (NB)</th><th>NB Matches</th></tr>");
+//			
 			String trainSourceString = request.getParameter("train").toString();
 			String testSourceString = "";
 			if(!request.getParameter("test").isEmpty()) {
@@ -89,9 +91,12 @@ import weka.core.*;
 					colourNB = "green";
 				} else { matchNB = "unmatched"; noOfUnmatchesNB++; colourNB = "red";}
 				int no = i + 1;
-				out.println("<tr><td>"+ no +"</td><td>"+actualList.get(i)+"</td>");
-				out.println("<td>"+J48predictionList.get(i)+"</td><td style='color: "+colourJ48+"'>"+matchJ48+"</td>");
-				out.println("<td>"+NBpredictionList.get(i)+"</td><td style='color: "+colourNB+"'>"+matchNB+"</td>");
+//				out.println("<tr><td>"+ no +"</td><td>"+actualList.get(i)+"</td>");
+//				out.println("<td>"+J48predictionList.get(i)+"</td><td style='color: "+colourJ48+"'>"+matchJ48+"</td>");
+//				out.println("<td>"+NBpredictionList.get(i)+"</td><td style='color: "+colourNB+"'>"+matchNB+"</td>");
+				tableString += "<tr><td>"+ no +"</td><td ondblclick='changeValue("+i+")'><span id='actualClass_"+i+"'>"+actualList.get(i)+"</span><input type='text' id='editActualClass_"+i+"' style='display:none;' value='"+actualList.get(i)+"'></td>";
+				tableString += "<td id='j48_"+i+"'>"+J48predictionList.get(i)+"</td><td style='color: "+colourJ48+"' id='j48Color_"+i+"'>"+matchJ48+"</td>";
+				tableString += "<td id='nb_"+i+"'>"+NBpredictionList.get(i)+"</td><td style='color: "+colourNB+"' id='nbColor_"+i+"'>"+matchNB+"</td>";
 			}
 			
 			int totalJ48 = noOfMatchesJ48 + noOfUnmatchesJ48;
@@ -99,18 +104,23 @@ import weka.core.*;
 			
 			int totalNB = noOfMatchesNB + noOfUnmatchesNB;
 			double percentNB = (noOfMatchesNB * 100)/totalNB;
-			out.println("</table></div>");
-			out.println("<hr>");
-			out.println("Number of J48 matches: " + noOfMatchesJ48);
-			out.println("<br>Number of J48 unmatches: " + noOfUnmatchesJ48);
-			out.println("<br>% of J48 Matches: " + percentJ48 +"%");
-			out.println("<hr>");
-			out.println("Number of Naive Bayes matches: " + noOfMatchesNB);
-			out.println("<br>Number of Naive Bayes unmatches: " + noOfUnmatchesNB);
-			out.println("<br>% of Naive Bayes Matches: " + percentNB +"%");
+//			out.println("</table></div>");
+			percentageString += "<hr>";
+			percentageString += "Number of J48 matches: <span id='j48Matches'>" + noOfMatchesJ48 + "</span>";
+			percentageString += "<br>Number of J48 unmatches: <span id='j48Unmatches'>" + noOfUnmatchesJ48 + "</span>";
+			percentageString += "<br>% of J48 Matches: <span id='j48Percent'>" + percentJ48 +"</span>%";
+			percentageString += "<hr>";
+			percentageString += "Number of Naive Bayes matches: <span id='nbMatches'>" + noOfMatchesNB + "</span>";
+			percentageString += "<br>Number of Naive Bayes unmatches: <span id='nbUnmatches'>" + noOfUnmatchesNB + "</span>";
+			percentageString += "<br>% of Naive Bayes Matches: <span id='nbPercent'>" + percentNB +"</span>%";
 			
-			
-			out.println("</div></body></html>");
+			request.setAttribute("tableString", tableString);
+			request.setAttribute("percentageString", percentageString);
+			RequestDispatcher rd=request.getRequestDispatcher("predictionPage.jsp");  
+            rd.forward(request, response);  
+//			
+//			
+//			out.println("</div></body></html>");
 		}
 	
 		/**
