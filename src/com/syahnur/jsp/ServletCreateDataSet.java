@@ -35,58 +35,81 @@ public class ServletCreateDataSet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] attributeNames = request.getParameterValues("attributeName");
-		int attCount = attributeNames.length;
 		
-		String string = "{\"attribute\":[";
-		for(int i = 0; i < attCount; i++) {
-			int index = i+1;
-			String type = request.getParameter("attributeType_"+index);
-			string += " {\"name\" :\"" + attributeNames[i]+"\", \"type\": \""+type+"\", \"option\" :[";
-			String[] option = request.getParameterValues("option_"+index);
-			for(int j = 0; j < option.length; j++) {
-				string += "\""+option[j]+"\",";
-			}
-			string = string.substring(0, string.length() - 1);
-			string += "]},";
+		String structureString = request.getParameter("structureString");
+		String submitButton = request.getParameter("submitButton");
+
+		if(submitButton.equals("Manual Entry")) {
+			String tableHeader = "";
+			String tableContent = "";
+			if(structureString.isEmpty()) {
+				String[] attributeNames = request.getParameterValues("attributeName");
+				int attCount = attributeNames.length;
+				for(int i = 0; i < attCount; i++) {
+					tableHeader += "<th class='attributeName' style='width:150px'>" + deCamelCasealize(attributeNames[i]) + "</th>";
+					tableContent += "<td style='width:150px'>";
+					int index = i+1;
+					String attType = request.getParameter("attributeType_"+index).toString();
+					if(attType.equals("Numeric")) {
+						structureString += attributeNames[i]+",";
+						tableContent += "<input type='text' name='"+attributeNames[i]+"' class='form-control'/>";
+					} else if (attType.equals("Nominal")) {
+						structureString += attributeNames[i]+"[";
+						String[] options = request.getParameterValues("option_"+index);
+						int optionCount = options.length;
+						tableContent += "<select class='form-control' name='"+attributeNames[i]+"'>";
+						for (int j = 0; j < optionCount; j++) {
+							tableContent += "<option>"+options[j]+"</option>";
+							structureString += options[j] + ";";
+						}
+						structureString = structureString.substring(0, structureString.length() - 1);
+						structureString += "],";
+						tableContent += "</select>";
+					}
+				}
+				structureString = structureString.substring(0, structureString.length() - 1);
+				tableContent += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger'/></td>";
+				tableHeader += "<th style='width:150px'>Option</th>";
+			} else {
+				String[] atts = structureString.split(",");
+		         for (int i = 0; i < atts.length; i++) {
+		              tableContent += "<td style='width:150px'>";
+		              String att = atts[i].trim();
+		              int indexOfBracket = att.indexOf('[');
+		              if ( indexOfBracket < 0){//numeric or something else
+		            	  tableHeader += "<th class='attributeName' style='width:150px'>" + deCamelCasealize(att) + "</th>";
+		            	  tableContent += "<input type='text' name='"+att+"' class='form-control'/>";
+		              }else{//it's a nominal attribute
+		                   String attName = att.substring(0, indexOfBracket);
+		                   tableHeader += "<th class='attributeName'style='width:150px'>" + deCamelCasealize(attName) + "</th>";
+		                   String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
+		                   tableContent += "<select class='form-control' name='"+attName+"'>";
+		                   for (int j = 0; j < nominalValues.length; j++) {
+		                	   tableContent += "<option>"+nominalValues[j]+"</option>";
+		                   }
+		                   tableContent += "</select>";
+		              }
+		         }
+		         tableContent += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger'/></td>";
+		         tableHeader += "<th style='width:150px'>Option</th>";
+			}	
+			
+			request.setAttribute("tableHeader", tableHeader);
+			request.setAttribute("tableContent", tableContent);
+			request.setAttribute("structureString", structureString);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("createDataSetForm.jsp");
+			rd.forward(request, response);
+		} else if (submitButton.equals("Upload CSV")) {
+			request.setAttribute("structureString", structureString);
+			RequestDispatcher rd = request.getRequestDispatcher("uploadDataSet.jsp");
+			rd.forward(request, response);
+		} else {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println(submitButton);
 		}
-		string = string.substring(0, string.length() - 1);
-		string += "]}";
-//		JSONObject data = null;
-//		try {
-//			data = new JSONObject(string);
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		request.setAttribute("attribute", string);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("createDataSetForm.jsp");
-		rd.forward(request, response);
-		
-//		response.setContentType("application/json");
-//		
-//		PrintWriter out = response.getWriter();
-//		
-//		out.println(string);
-		
-//		for(int j = 0; j < attCount; i++) {
-//			int index = j+1;
-//			String attName = attributeNames[j];
-//			String attType = request.getParameter("attributeType_"+index);
-//			out.print("<td style='width:150px'>");
-//			if(attType == "Numeric") { 
-//				out.print("<input type='text' name='"+attName+"' class='form-control'/>");
-//			} else if(attType == "Nominal")  {
-//				String[] options = request.getParameterValues("option_"+index);
-//				out.print("<select class='form-control' name='"+attName+"'>");
-//				for(int k = 0; k < options.length; k++) {
-//					out.print("<option>"+options[k]+"</option>");
-//				}
-//				out.print("</select>");
-//			}
-//			out.print("</td>");
-//		}
 	}
 
 	/**
@@ -95,6 +118,20 @@ public class ServletCreateDataSet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public static String deCamelCasealize(String camelCasedString) {
+	    if (camelCasedString == null || camelCasedString.isEmpty())
+	        return camelCasedString;
+
+	    StringBuilder result = new StringBuilder();
+	    result.append(camelCasedString.charAt(0));
+	    for (int i = 1; i < camelCasedString.length(); i++) {
+	        if (Character.isUpperCase(camelCasedString.charAt(i)))
+	        result.append(" ");
+	        result.append(camelCasedString.charAt(i));
+	    }
+	    return result.toString();
 	}
 
 }

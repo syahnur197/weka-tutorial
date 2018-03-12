@@ -5,29 +5,10 @@
 			<table class="table table-striped" id="instances_table" style="table-layout:fixed;">
 				<tr>
 				<% 
-					String[] attributeNames = request.getParameterValues("attributeName");
- 					int attCount = attributeNames.length;
- 					String string = "";
-					for(int i = 0; i < attCount; i++) {
-						out.print("<th class='attributeName'>" + attributeNames[i] + "</th>");
-						string += "<td style='width:150px'>";
-						int index = i+1;
-						String attType = request.getParameter("attributeType_"+index).toString();
-						if(attType.equals("Numeric")) {
-							string += "<input type='text' name='"+attributeNames[i]+"' class='form-control'/>";
-						} else if (attType.equals("Nominal")) {
-							String[] options = request.getParameterValues("option_"+index);
-							int optionCount = options.length;
-							string += "<select class='form-control' name='"+attributeNames[i]+"'>";
-							for (int j = 0; j < optionCount; j++) {
-								string += "<option>"+options[j]+"</option>";
-							}
-							string += "</select>";
-						}
-						string += "</td>";
-					}
-					string += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger'/></td>";
-					out.print("<th>Option</th>");
+					String tableHeader = request.getAttribute("tableHeader").toString();
+					String tableContent = request.getAttribute("tableContent").toString();
+					String structureString = request.getAttribute("structureString").toString();
+					out.print(tableHeader);
 				
 				%>
 				</tr>
@@ -36,17 +17,18 @@
 					for(int i = 0; i < studentCount; i++) {
 				%>
 				<tr>
-					<% out.println(string); %>	
+					<% out.print(tableContent); %>	
 				</tr>
 				<% } %>
 			</table>
-			<input type="button" value="Download as CSV" class="btn btn-block btn-success" onclick="downloadCSV()"/>
 		</div>
+		<input type="hidden" name="structureString" value="<% out.print(structureString); %>" />
+		<input type="button" value="Download as CSV" class="btn btn-block btn-success" onclick="downloadCSV()"/>
 	</form>
 <jsp:include page="layout/footer.jsp" />
 <script>
 function addInstance() {
-	$("#instances_table").append("<tr><%= string%></tr>");
+	$("#instances_table").append("<tr><%= tableContent%></tr>");
 }
 
 function downloadCSV() {
@@ -76,8 +58,6 @@ function downloadCSV() {
 }
 
 function arrayToCSV (twoDiArray) {
-    //  Modified from: http://stackoverflow.com/questions/17836273/
-    //  export-javascript-data-to-csv-file-without-server-interaction
     var csvRows = [];
     for (var i = 0; i < twoDiArray.length; ++i) {
         for (var j = 0; j < twoDiArray[i].length; ++j) {

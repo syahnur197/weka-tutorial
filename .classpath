@@ -16,5 +16,10 @@
 	<classpathentry kind="lib" path="C:/Program Files/Weka-3-8/weka.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/gson-2.8.2-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

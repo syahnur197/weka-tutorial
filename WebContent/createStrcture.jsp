@@ -4,14 +4,10 @@
 			<h2>Create New Data Set</h2>
 		</div>
 	</div>
-	<form action="ServletCreateDataSet" method="post">
+	<form action="ServletCreateStructure" method="post">
 		<div class="form-group">
-			<label for="dataSetName">Data Set Name (No Spaces):</label>
-			<input type="text" class="form-control" id="dataSetName" name="dataSetName" id="dataSetName"/>
-		</div>
-		<div class="form-group">
-			<label for="noOfStudents">Number of Students Students:</label>
-			<input type="number" class="form-control" name="noOfStudents" id="noOfStudents"/>
+			<label for="structureName">Structure Name (No Spaces):</label>
+			<input type="text" class="form-control" id="structureName" name="structureName"/>
 		</div>
 		<h3>Structure String</h3>
 		<div class="form-group">
@@ -22,8 +18,7 @@
 		<h3>Structure Builder</h3>
 		<div id="structureBuilder"></div>
 		<button type="button" class="btn btn-block btn-primary" id="addAttribute" onclick="addAttributeName()">Add Attribute</button>
-		<input type="submit" name="submitButton" class="btn btn-block btn-warning my-2 submitButton" style="display:none;" value="Manual Entry"/>
-		<input type="submit" name="submitButton" class="btn btn-block btn-warning my-2 submitButton" style="display:none;" value="Upload CSV"/>
+		<input type="submit" name="submitButton" class="btn btn-block btn-warning my-2 submitButton" style="display:none;" value="Insert Structure"/>
 	</form>
 <jsp:include page="layout/footer.jsp" />
 
@@ -31,7 +26,7 @@
 	var count = 0;
 	function addAttributeName() {
 		var regex = /^\S*$/;
-		if (!regex.test($("#dataSetName").val()) || $("#dataSetName").val() == "") {
+		if (!regex.test($("#structureName").val()) || $("#structureName").val() == "") {
 			alert("Do not leave the data set name empty and remove any spaces in the data set name!")
 		} else {
 			$(".submitButton").show();
