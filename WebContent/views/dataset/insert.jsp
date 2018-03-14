@@ -1,4 +1,4 @@
-<jsp:include page="layout/header.jsp" />
+<jsp:include page="../layout/header.jsp" />
 	<button onclick='addInstance()' class='btn btn-block btn-primary'>Add Instance</button><br>
 	<form action="#" method="post">
 		<div class="table-responsive">
@@ -25,7 +25,7 @@
 		<input type="hidden" name="structureString" value="<% out.print(structureString); %>" />
 		<input type="button" value="Download as CSV" class="btn btn-block btn-success" onclick="downloadCSV()"/>
 	</form>
-<jsp:include page="layout/footer.jsp" />
+<jsp:include page="../layout/footer.jsp" />
 <script>
 function addInstance() {
 	$("#instances_table").append("<tr><%= tableContent%></tr>");

@@ -1,4 +1,4 @@
-<jsp:include page="layout/header.jsp" />
+<jsp:include page="../layout/header.jsp" />
 	<%
 		String table = request.getAttribute("tableString").toString();
 		String percentage = request.getAttribute("percentageString").toString();
@@ -12,7 +12,7 @@
 		</table>
 	</div>
 	<%= percentage %>
-<jsp:include page="layout/footer.jsp" />
+<jsp:include page="../layout/footer.jsp" />
 <script>
 	function changeValue(i) {
 		$('#actualClass_'+i).hide();

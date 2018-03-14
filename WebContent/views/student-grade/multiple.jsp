@@ -1,5 +1,5 @@
-<jsp:include page="layout/header.jsp"/>
-	<form action="instancesDataEntry.jsp" method="GET">
+<jsp:include page="../layout/header.jsp"/>
+	<form action="views/student-grade/insert.jsp" method="GET">
 		<div class="form-group">
 			<label for="noOfInstances">How Many Instances:</label>
 			<input type="number" class="form-control" name="noOfInstances" id="noOfInstances"/>
@@ -8,4 +8,4 @@
 			<input type="submit" class="btn btn-primary btn-block" value="submit"/>
 		</div>
 	</form>
-<jsp:include page="layout/footer.jsp"/>
+<jsp:include page="../layout/footer.jsp"/>

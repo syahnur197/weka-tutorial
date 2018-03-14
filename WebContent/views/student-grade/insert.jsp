@@ -1,6 +1,6 @@
-<jsp:include page="layout/header.jsp"/>
+<jsp:include page="../layout/header.jsp"/>
 	<button onclick='addInstance()' class='btn btn-block btn-primary'>Add Instance</button><br>
-	<form action="ServletPrediction" method="post">
+	<form action="../../ServletPrediction" method="post">
 		<div class="table-responsive">
 			<table class="table table-striped" id="instances_table" style="table-layout:fixed;">
 				<tr>
@@ -180,4 +180,4 @@
 			<button type="submit" class="btn btn-success btn-block">Submit</button>
 		</div>
 	</form>
-<jsp:include page="layout/footer.jsp"/>
+<jsp:include page="../layout/footer.jsp"/>

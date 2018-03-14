@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,49 +64,34 @@ public class ServletCreateStructure extends HttpServlet {
 			structureString = structureString.substring(0, structureString.length() - 1);
 		}
 		
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		// ConnectionManager cm = new ConnectionManager();
 		HashMap<String,String> values = new HashMap<String,String>();
 		values.put("structure_name", structureName);
 		values.put("structure_string", structureString);
-		
-		String url = "jdbc:mysql://localhost/weka_db";
-		String username = "root";
-		String password = "";
-		
-//		try {
-//			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-//			Connection conn = DriverManager.getConnection(url,username,password);
-//			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM `structure` WHERE `structure_name` = ?");
-//			stmt.setString(1, values.get("structure_name"));
-//			ResultSet rs = stmt.executeQuery();
-//			if(rs.next()) {
-//				out.println(rs.getString("structure_string"));
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		ConnectionManager cm = new ConnectionManager();
 		boolean select = cm.get("structure", "*", "`structure_name` LIKE \""+values.get("structure_name")+"\"");
+		String message = "";
 		if (select) {
-			System.out.println("INSERT FAIL: Structure name is already exist!");
+			message = "INSERT FAIL: Structure name is already exist, use another name!";
 		} else {
 			select = cm.get("structure", "*", "`structure_string` LIKE \""+values.get("structure_string")+"\"");
 			if (select) {
-				out.println("INSERT FAIL: Structure is already exist!");
+				message = "INSERT FAIL: Structure String is already exist in the database!";
 			} else {
 				boolean success = cm.insert("structure", values);
 				if(success) {
-					out.println(cm.getInsertID());
-					
+					message = "New structure inserted successfully!";
 				} else {
-					out.println("Fail to execute query");
+					message = "INSERT FAIL: Fail to execute query!";
 				}
 			}
 		}
+		
+		request.setAttribute("message", message);
+		request.setAttribute("success", select);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("views/structure/created.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

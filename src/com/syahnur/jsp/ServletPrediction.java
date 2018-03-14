@@ -115,7 +115,7 @@ public class ServletPrediction extends HttpServlet {
 
 		request.setAttribute("tableString", tableString);
 		request.setAttribute("percentageString", percentageString);
-		RequestDispatcher rd = request.getRequestDispatcher("predictionPage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/prediction/page.jsp");
 		rd.forward(request, response);
 	}
 

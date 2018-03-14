@@ -24,6 +24,20 @@ public class ConnectionManager {
 		return conn;
 	}
 	
+	public PreparedStatement getPreparedStatement(String sql) {
+		try {
+			return conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Connection getConn() {
+		return conn;
+	}
+	
 	public boolean disconnect() {
 
 		if(conn != null) {

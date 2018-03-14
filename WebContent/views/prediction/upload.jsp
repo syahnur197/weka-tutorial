@@ -1,5 +1,5 @@
-<jsp:include page="layout/header.jsp" />
-	<form action="ServletPrediction" method="post">
+<jsp:include page="../layout/header.jsp" />
+	<form action="../../ServletPrediction" method="post">
 		<div class="form-group">
 			<label for="train">Training Data:</label>
 			<input type="file" class="form-control" id="train" name="train"/>
@@ -14,4 +14,4 @@
 		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>
-<jsp:include page="layout/footer.jsp" />
+<jsp:include page="../layout/footer.jsp" />

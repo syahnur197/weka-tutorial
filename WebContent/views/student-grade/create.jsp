@@ -1,5 +1,5 @@
-<jsp:include page="layout/header.jsp"/>
-		<form action="ServletInstancePrediction" method="POST">
+<jsp:include page="../layout/header.jsp"/>
+		<form action="../../ServletInstancePrediction" method="POST">
 		
 			<div class="form-group">
 				<label for="gender">Gender:</label>
@@ -151,4 +151,4 @@
 			</div>
 			<button type="submit" class="btn btn-success btn-block">Submit</button>
 		</form>
-<jsp:include page="layout/footer.jsp"/>
+<jsp:include page="../layout/footer.jsp"/>
