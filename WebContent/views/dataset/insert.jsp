@@ -1,6 +1,6 @@
 <jsp:include page="../layout/header.jsp" />
 	<button onclick='addInstance()' class='btn btn-block btn-primary'>Add Instance</button><br>
-	<form action="#" method="post">
+	<form action="/weka-tutorial/ServletUploadDataSet" method="post">
 		<div class="table-responsive">
 			<table class="table table-striped" id="instances_table" style="table-layout:fixed;">
 				<tr>
@@ -23,6 +23,7 @@
 			</table>
 		</div>
 		<input type="hidden" name="structureString" value="<% out.print(structureString); %>" />
+		<input type="submit" name="submit" value="Upload as CSV" class="btn btn-block btn-success" />
 		<input type="button" value="Download as CSV" class="btn btn-block btn-success" onclick="downloadCSV()"/>
 	</form>
 <jsp:include page="../layout/footer.jsp" />

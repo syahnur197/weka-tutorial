@@ -12,7 +12,9 @@
 			<h2>Home</h2>
 		</div>
 		<div class="col-md-12 my-2">
-			<button class="btn btn-block btn-danger">View [Not Yet]</button>
+			<a href="ServletSelectDatasets">
+				<button class="btn btn-block btn-danger">View [Not Yet]</button>
+			</a>
 		</div>
 		<div class="col-md-12 my-2">
 			<a href="views/structure/create.jsp">	

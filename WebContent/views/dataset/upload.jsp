@@ -17,6 +17,6 @@
 		<input type="hidden" name="structureString" value="<% out.print(structureString); %>" />
 		<input type="hidden" name="structureId" value="<% out.print(structureId); %>" />
 		<input type="hidden" name="datasetName" value="<% out.print(datasetName); %>" />
-		<button type="submit" class="btn btn-block btn-success">Submit</button>
+		<input type="submit" name="submit" value="Upload CSV" class="btn btn-block btn-success" />
 	</form>
 <jsp:include page="../layout/footer.jsp" />
