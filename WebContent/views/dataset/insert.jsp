@@ -1,13 +1,14 @@
 <jsp:include page="../layout/header.jsp" />
 	<button onclick='addInstance()' class='btn btn-block btn-primary'>Add Instance</button><br>
-	<form action="/weka-tutorial/ServletUploadDataSet" method="post">
+	<form action="/weka-tutorial/ServletUploadDataSet" method="post" id="instances_table_form">
 		<div class="table-responsive">
 			<table class="table table-striped" id="instances_table" style="table-layout:fixed;">
 				<tr>
 				<% 
 					String tableHeader = request.getAttribute("tableHeader").toString();
 					String tableContent = request.getAttribute("tableContent").toString();
-					String structureString = request.getAttribute("structureString").toString();
+						String datasetName = request.getAttribute("datasetName").toString();
+						int structureId = (int)request.getAttribute("structureId");
 					out.print(tableHeader);
 				
 				%>
@@ -22,7 +23,8 @@
 				<% } %>
 			</table>
 		</div>
-		<input type="hidden" name="structureString" value="<% out.print(structureString); %>" />
+		<input type="hidden" name="structureId" value="<% out.print(structureId); %>" />
+		<input type="hidden" name="datasetName" value="<% out.print(datasetName); %>" />
 		<input type="submit" name="submit" value="Upload as CSV" class="btn btn-block btn-success" />
 		<input type="button" value="Download as CSV" class="btn btn-block btn-success" onclick="downloadCSV()"/>
 	</form>

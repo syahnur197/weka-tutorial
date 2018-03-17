@@ -22,11 +22,6 @@
 			</a>
 		</div>
 		<div class="col-md-12 my-2">
-			<a href="views/dataset/create.jsp">	
-				<button class="btn btn-block btn-success">Create Data Set From Non Existing Structure</button>
-			</a>
-		</div>
-		<div class="col-md-12 my-2">
 			<a href="views/structure/select.jsp">	
 				<button class="btn btn-block btn-success">Create Data Set From Existing Structure</button>
 			</a>
@@ -51,6 +46,11 @@
 		<div class="col-md-12 my-2">
 			<a href="views/student-grade/insert.jsp">	
 				<button class="btn btn-block btn-warning">Get Single Prediction (OLD)</button>
+			</a>
+		</div>
+		<div class="col-md-12 my-2">
+			<a href="views/dataset/create.jsp">	
+				<button class="btn btn-block btn-warning">Create Data Set From Non Existing Structure (OLD)</button>
 			</a>
 		</div>
 	</div>

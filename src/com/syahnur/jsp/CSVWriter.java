@@ -125,5 +125,32 @@ public class CSVWriter {
         pw.close();
 		return fileName;
 	}
+	
+	public String createCSV3(String fileName) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(new File(fileName));
+		StringBuilder sb = new StringBuilder();
+		String[] attributeNames = request.getParameterValues("attributeName");
+		int attCount = attributeNames.length;
+		int count = request.getParameterValues(attributeNames[0]).length;
+		String prefix = "";
+		for(int i = 0; i < attCount; i++) {
+			sb.append(prefix);
+			prefix = ",";
+			sb.append(attributeNames[i]);
+		}
+		sb.append("\n");
+		for(int i = 0; i < count; i++) {
+			prefix = "";
+			for(int j = 0; j < attCount; j++) {
+				sb.append(prefix);
+				prefix = ",";
+				sb.append(request.getParameterValues(attributeNames[j])[i]);
+			}
+			sb.append("\n");
+		}
+		pw.write(sb.toString());
+        pw.close();
+		return fileName;
+	}
 
 }

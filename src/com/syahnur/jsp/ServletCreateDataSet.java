@@ -66,7 +66,7 @@ public class ServletCreateDataSet extends HttpServlet {
 						String[] attributeNames = request.getParameterValues("attributeName");
 						int attCount = attributeNames.length;
 						for(int i = 0; i < attCount; i++) {
-							tableHeader += "<th class='attributeName' style='width:150px'>" + deCamelCasealize(attributeNames[i]) + "</th>";
+							tableHeader += "<th name='attributeName' class='attributeName' style='width:150px'>" + deCamelCasealize(attributeNames[i]) + " <input type='hidden' name='attributeName' value='" + attributeNames[i] + "'/></th>";
 							tableContent += "<td style='width:150px'>";
 							int index = i+1;
 							String attType = request.getParameter("attributeType_"+index).toString();
@@ -88,7 +88,7 @@ public class ServletCreateDataSet extends HttpServlet {
 							}
 						}
 						structureString = structureString.substring(0, structureString.length() - 1);
-						tableContent += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger'/></td>";
+						tableContent += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger deleteRowButton'/></td>";
 						tableHeader += "<th style='width:150px'>Option</th>";
 					} else {
 						String[] atts = structureString.split(",");
@@ -97,11 +97,11 @@ public class ServletCreateDataSet extends HttpServlet {
 				              String att = atts[i].trim();
 				              int indexOfBracket = att.indexOf('[');
 				              if ( indexOfBracket < 0){//numeric or something else
-				            	  tableHeader += "<th class='attributeName' style='width:150px'>" + deCamelCasealize(att) + "</th>";
+				            	  tableHeader += "<th name='attributeName' class='attributeName' style='width:150px'>" + deCamelCasealize(att) + " <input type='hidden' name='attributeName' value='" + att + "'/></th>";
 				            	  tableContent += "<input type='text' name='"+att+"' class='form-control'/>";
 				              }else{//it's a nominal attribute
 				                   String attName = att.substring(0, indexOfBracket);
-				                   tableHeader += "<th class='attributeName'style='width:150px'>" + deCamelCasealize(attName) + "</th>";
+				                   tableHeader += "<th name='attributeName' class='attributeName' style='width:150px'>" + deCamelCasealize(attName) + " <input type='hidden' name='attributeName' value='" + attName + "'/></th>";
 				                   String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
 				                   tableContent += "<select class='form-control' name='"+attName+"'>";
 				                   for (int j = 0; j < nominalValues.length; j++) {

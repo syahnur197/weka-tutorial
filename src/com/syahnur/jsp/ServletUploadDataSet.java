@@ -1,5 +1,7 @@
 package com.syahnur.jsp;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -40,49 +42,51 @@ public class ServletUploadDataSet extends HttpServlet {
 		String datasetName = request.getParameter("datasetName").toString();
 		int structureId = Integer.parseInt(request.getParameter("structureId"));
 		String submitValue = request.getParameter("submit").toString();
+		InputStream is = null;
+		String message = "";
+		String url = "";
+		boolean success = false;
+		ConnectionManager cm = new ConnectionManager();
+		String sql = "INSERT INTO `dataset` (structure_id, dataset_name, dataset_file) VALUES (?, ?, ?)";
 		if (submitValue.equals("Upload CSV")) {
-			InputStream is = null;
-			Part filePart = request.getPart("dataset");
-			
+			Part filePart = request.getPart("dataset");		
 			if(filePart != null) {
 				is = filePart.getInputStream();
-			}
-			String message = "";
-			String url = "";
-			boolean success = false;
-			ConnectionManager cm = new ConnectionManager();
-			String sql = "INSERT INTO `dataset` (structure_id, dataset_name, dataset_file) VALUES (?, ?, ?)";
-			
-			try {
-				PreparedStatement ps = cm.getPreparedStatement(sql);
-				ps.setInt(1, structureId);
-				ps.setString(2, datasetName);
-				ps.setBlob(3, is);
-				int row = ps.executeUpdate();
-				if(row > 0) {
-					message = "File Uploaded to server";
-					success = true;
-					url = "/weka-tutorial/index.jsp";
-				} else {
-					message = "Fail to upload to server";
-					success = false;
-					url = "/weka-tutorial/views/structure/select.jsp";
-				}	
-				
-				HttpSession session = request.getSession();
-				session.setAttribute("message", message);
-				session.setAttribute("success", success);
-				response.sendRedirect(url);
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+			}		
 		} else if (submitValue.equals("Upload as CSV")) {
-			
+			CSVWriter cw = new CSVWriter(request);
+			String uploadData = "C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/uploadData.csv";
+			cw.createCSV3(uploadData);
+			is = new FileInputStream(new File(uploadData));
 		}
+		
+		try {
+			PreparedStatement ps = cm.getPreparedStatement(sql);
+			ps.setInt(1, structureId);
+			ps.setString(2, datasetName);
+			ps.setBlob(3, is);
+			int row = ps.executeUpdate();
+			if(row > 0) {
+				message = "File Uploaded to server";
+				success = true;
+				url = "/weka-tutorial/index.jsp";
+			} else {
+				message = "Fail to upload to server";
+				success = false;
+				url = "/weka-tutorial/views/structure/select.jsp";
+			}	
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("message", message);
+			session.setAttribute("success", success);
+			response.sendRedirect(url);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 	}
 
