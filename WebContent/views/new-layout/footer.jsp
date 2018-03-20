@@ -33,6 +33,14 @@
     <script src="/weka-tutorial/js/lib/chartist/chartist-plugin-tooltip.min.js"></script>
     <script src="/weka-tutorial/js/lib/chartist/chartist-init.js"></script>
     
+    <!--  CSV to HTML SCRIPT  -->
+    
+    <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/jquery.min.js"></script>
+    <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/jquery.csv.min.js"></script>
+    <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/csv_to_html_table.js"></script>
     
     <script src="/weka-tutorial/js/lib/ajaxForm/ajaxForm.min.js"></script>
 

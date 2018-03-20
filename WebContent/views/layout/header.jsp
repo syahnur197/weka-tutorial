@@ -10,6 +10,9 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script src='/weka-tutorial/assets/js/table2CSV.js'></script>
 	<script src='/weka-tutorial/assets/js/ajaxForm.min.js'></script>
+	
+	<!-- CSV 2 HTML CSS -->
+    <link href="/weka-tutorial/css/dataTables.bootstrap.css" rel="stylesheet">
 </head>
 <body>
 

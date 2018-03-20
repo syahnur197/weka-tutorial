@@ -67,51 +67,52 @@ public class ServletGetBlob extends HttpServlet {
 				output.close();
 			}
 			
-			String[] atts = structureString.split(",");			
-			
-			CSVReader reader = new CSVReader(new FileReader(file));
-			// BufferedReader reader = new BufferedReader(new FileReader(file));
-            String [] nextLine;
-            String[] header = reader.readNext();
-            // String[] header = reader.readLine();
-            String tableString = "";
-              
-            if (header != null) {
-               tableString += "<tr>";
-               for(int i = 0; i < header.length; i++) {
-            	   tableString += "<th style='width:150px'>"+header[i]+" <input type='hidden' name='attributeName' value='" + header[i] + "'/></th>";
-               }
-               tableString += "</tr>";
-               while ((nextLine = reader.readNext()) != null) {
-            	 tableString += "<tr>";
-                 for (int i = 0; i < nextLine.length; i++) {
-                	 tableString += "<td style='width:150px'><span class='valueCell'>"+nextLine[i] + "</span> ";
-                	 for (int j = 0; j < atts.length; j++) {
-         				String att = atts[j].trim();
-         				int indexOfBracket = att.indexOf('[');
-         				if ( indexOfBracket < 0 && j == i){
-         					tableString += "<input type='text' name='"+att+"' class='form-control' style='display:none' value='" + nextLine[i] + "'/>";
-         				} else if (j == i) {
-         					String attName = att.substring(0, indexOfBracket);
-         					String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
-         					tableString += "<select class='form-control' name='"+attName+"' style='display:none'>";
-         					for (int k = 0; k < nominalValues.length; k++) {
-         						String chosen = "";
-         						if (nominalValues[k].equals(nextLine[i])) {
-         							chosen = "selected";
-         						}
-         						tableString += "<option " + chosen + ">"+nominalValues[k]+"</option>";
-         					}
-         					tableString += "</select>";
-         				}
-         			}
-                	 tableString += "</td>";
-                 }
-                 tableString += "</tr>";
-               }
-            }
-            reader.close();
-            request.setAttribute("tableString", tableString);
+//			String[] atts = structureString.split(",");			
+//			
+//			CSVReader reader = new CSVReader(new FileReader(file));
+//			// BufferedReader reader = new BufferedReader(new FileReader(file));
+//            String [] nextLine;
+//            String[] header = reader.readNext();
+//            // String[] header = reader.readLine();
+//            String tableString = "";
+//              
+//            if (header != null) {
+//               tableString += "<tr>";
+//               for(int i = 0; i < header.length; i++) {
+//            	   tableString += "<th style='width:150px'>"+header[i]+" <input type='hidden' name='attributeName' value='" + header[i] + "'/></th>";
+//               }
+//               tableString += "</tr>";
+//               while ((nextLine = reader.readNext()) != null) {
+//            	 tableString += "<tr>";
+//                 for (int i = 0; i < nextLine.length; i++) {
+//                	 tableString += "<td style='width:150px'><span class='valueCell'>"+nextLine[i] + "</span> ";
+//                	 for (int j = 0; j < atts.length; j++) {
+//         				String att = atts[j].trim();
+//         				int indexOfBracket = att.indexOf('[');
+//         				if ( indexOfBracket < 0 && j == i){
+//         					tableString += "<input type='text' name='"+att+"' class='form-control' style='display:none' value='" + nextLine[i] + "'/>";
+//         				} else if (j == i) {
+//         					String attName = att.substring(0, indexOfBracket);
+//         					String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
+//         					tableString += "<select class='form-control' name='"+attName+"' style='display:none'>";
+//         					for (int k = 0; k < nominalValues.length; k++) {
+//         						String chosen = "";
+//         						if (nominalValues[k].equals(nextLine[i])) {
+//         							chosen = "selected";
+//         						}
+//         						tableString += "<option " + chosen + ">"+nominalValues[k]+"</option>";
+//         					}
+//         					tableString += "</select>";
+//         				}
+//         			}
+//                	 tableString += "</td>";
+//                 }
+//                 tableString += "</tr>";
+//               }
+//            }
+//            reader.close();
+//            request.setAttribute("tableString", tableString);
+			request.setAttribute("fileName", "http://localhost:8080/weka-tutorial/assets/files/data.csv");
             request.setAttribute("dataset_id", dataset_id);
 			RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/old-view.jsp");
 			rd.forward(request, response);

@@ -15,6 +15,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src='/weka-tutorial/assets/js/main.js'></script>               
+<script src='/weka-tutorial/assets/js/main.js'></script>    
+
+ 
+	<!-- CSV 2 HTML SCRIPTS -->
+ <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/jquery.min.js"></script>
+ <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/jquery.csv.min.js"></script>
+ <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/jquery.dataTables.min.js"></script>
+ <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/dataTables.bootstrap.js"></script>
+ <script type="text/javascript" src="/weka-tutorial/js/lib/csv2html/csv_to_html_table.js"></script>           
 </body>
 </html>
