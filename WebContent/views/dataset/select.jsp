@@ -1,32 +1,66 @@
-<jsp:include page="../layout/header.jsp" />
+<jsp:include page="../new-layout/header.jsp" />
 	<%
 		String listString = request.getAttribute("listString").toString();
+		String message = "";
+		if (session.getAttribute("message") != null) {
+			message = "<div class='alert alert-success'><strong>Success! </strong>"+session.getAttribute("message").toString()+"</div>";
+			session.removeAttribute("message");
+		}
+		out.println(message);
 	%>
-	<ul class='list-group'>
-		<%= listString %>
-	</ul>
-	<hr>
-	<div style='display:none;' id="viewDatasetDiv">
-		<h4><span id="viewDataset"></span> is selected to be viewed</h4>
-		<form method="post" action="/weka-tutorial/ServletGetBlob">
-			<div class="form-group">
-				<input type="hidden" name="dataset_id" id="dataset_id" value=""/>
-				<input type="submit" value="View" class="btn btn-primary btn-block"/>
+	<!-- Page wrapper  -->
+	<div class="page-wrapper">
+		<!-- Bread crumb -->
+		<div class="row page-titles">
+			<div class="col-md-5 align-self-center">
+           		<h3 class="text-primary">View Data Set</h3>
 			</div>
-		</form>
-	</div>
-	<div style='display:none;' id="trainTestDiv">
-		<h4 style='display:none;'>Train Data: <span id="trainDataset"></span></h4>
-		<h4 style='display:none;'>Test Data: <span id="testDataset"></span></h4>
-		<form method="post" action="/weka-tutorial/ServletTrainTest">
-			<div class="form-group">
-				<input type="hidden" name="trainDataset_id" id="trainDataset_id" value=""/>
-				<input type="hidden" name="testDataset_id" id="testDataset_id" value=""/>
-				<input type="submit" value="Submit" class="btn btn-primary btn-block"/>
+       		<div class="col-md-7 align-self-center">
+           		<ol class="breadcrumb">
+               		<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+               		<li class="breadcrumb-item">Data Set</li>
+               		<li class="breadcrumb-item active">Select</li>
+           		</ol>
+       		</div>
+   		</div>
+   		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-title">
+							<h4>Structure List</h4>
+						</div>
+						<div class="card-body">
+							<ul class="list-icons">
+								<%= listString %>
+							</ul>
+						</div>
+					</div>
+					<div class="card" style='display:none;' id="viewDatasetDiv">
+						<h4><span id="viewDataset"></span> is selected to be viewed</h4>
+						<form method="post" action="/weka-tutorial/ServletGetBlob">
+							<div class="form-group">
+								<input type="hidden" name="dataset_id" id="dataset_id" value=""/>
+								<input type="submit" value="View" class="btn btn-primary btn-block"/>
+							</div>
+						</form>
+					</div>
+					<div class="card" style='display:none;' id="trainTestDiv">
+						<h4 style='display:none;'>Train Data: <span id="trainDataset"></span></h4>
+						<h4 style='display:none;'>Test Data: <span id="testDataset"></span></h4>
+						<form method="post" action="/weka-tutorial/ServletTrainTest">
+							<div class="form-group">
+								<input type="hidden" name="trainDataset_id" id="trainDataset_id" value=""/>
+								<input type="hidden" name="testDataset_id" id="testDataset_id" value=""/>
+								<input type="submit" value="Submit" class="btn btn-primary btn-block"/>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
-		</form>
+		</div>
 	</div>
-<jsp:include page="../layout/footer.jsp" />
+<jsp:include page="../new-layout/footer.jsp" />
 
 <script>
 	$(function() {

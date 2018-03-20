@@ -6,7 +6,7 @@ import java.util.HashMap;
 import javax.sql.*;
 
 public class ConnectionManager {
-	private static String url = "jdbc:mysql://localhost:3306/weka_db";
+	private static String url = "jdbc:mysql://localhost:3306/weka_db?useSSL=false";
 	private static String username = "root";
 	private static String password = "";
 	private static Connection conn;
