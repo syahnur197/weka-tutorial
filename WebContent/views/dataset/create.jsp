@@ -1,97 +1,114 @@
-<jsp:include page="../layout/header.jsp" />
-	THIS IS OLD NO LONG USED
-	<div class="row">
-		<div class="col-md-12 my-2">
-			<h2>Create New Data Set</h2>
-		</div>
+<jsp:include page="/views/new-layout/header.jsp" />
+	<% String tableBody = request.getAttribute("tableBody").toString(); %>
+	<!-- Page wrapper  -->
+	<div class="page-wrapper">
+		<!-- Bread crumb -->
+		<div class="row page-titles">
+			<div class="col-md-5 align-self-center">
+           		<h3 class="text-primary">View Structure</h3>
+			</div>
+       		<div class="col-md-7 align-self-center">
+           		<ol class="breadcrumb">
+               		<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+               		<li class="breadcrumb-item">Data Set</li>
+               		<li class="breadcrumb-item active">Create</li>
+           		</ol>
+       		</div>
+   		</div>
+		<div class="container-fluid">
+			<%
+				String message = "";
+				if (session.getAttribute("message") != null && session.getAttribute("success") != null) {
+					boolean success = (boolean)session.getAttribute("success");
+					if (success) {
+						message = "<div class='alert alert-success'><strong>Success! </strong>"+session.getAttribute("message").toString()+"</div>";
+					} else {
+						message = "<div class='alert alert-danger'><strong>Warning! </strong>"+session.getAttribute("message").toString()+"</div>";
+					}
+					session.removeAttribute("message");
+					out.println(message);
+				}
+			%>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card" id="structureListDiv">
+						<div class="card-title">
+							<h4>Structure List</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-hover ">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Structure Name</th>
+											<th style='text-align:left'>Option</th>
+										</tr>
+									</thead>
+									<%= tableBody %>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="card" id="structureStringDiv" style="display:none;">
+						<div class="card-title">
+							<h4 class="structureName">{{ structure name }}</h4>
+						</div>
+						<div class="card-body">
+							<span class="structureString">{{ structure string }}</span>
+							<button class="btn btn-block btn-danger my-3" onclick="closeDiv()">Close</button>
+						</div>
+					</div>
+					<div class="card" id="selectStructureDiv" style="display:none;">
+						<div class="card-title">
+							<h4 class="structureName">{{ structure name }}</h4>
+						</div>
+						<div class="card-body">
+							<form action="DatasetInsertForm" method="POST">
+								<div class="form-group"> 
+									<label for="structureName">Data Set Name:</label> 
+									<input type="text" class="form-control input-default" id="datasetName" name="datasetName" placeholder="Input Data Set Name" required/>
+								</div>
+								<input type="hidden" name="structure_id" id="insert_structure_id" value="" />
+								<input type="hidden" name="structure_string" class="structureString" value="" />
+								<input type="submit" name="submitButton" value="Manual Entry" class="btn btn-block btn-info mt-3"/>
+								<input type="submit" name="submitButton" value="Upload CSV" class="btn btn-block btn-primary mt-3"/>
+							</form>
+							<button class="btn btn-block btn-danger my-3" onclick="closeDiv()">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>     
 	</div>
-	<form action="../../ServletCreateDataSet" method="post">
-		<div class="form-group">
-			<label for="dataSetName">Data Set Name (No Spaces):</label>
-			<input type="text" class="form-control" id="dataSetName" name="dataSetName" id="dataSetName"/>
-		</div>
-		<div class="form-group">
-			<label for="noOfStudents">Number of Students Students:</label>
-			<input type="number" class="form-control" name="noOfStudents" id="noOfStudents"/>
-		</div>
-		<h3>Structure String</h3>
-		<div class="form-group">
-			<label for="structureString">Enter Structure String:</label>
-			<input type="text" class="form-control" name="structureString" id="structureString" onchange="enterStructureString()"/>
-		</div>
-		<hr>
-		<h3>Structure Builder</h3>
-		<div id="structureBuilder"></div>
-		<button type="button" class="btn btn-block btn-primary" id="addAttribute" onclick="addAttributeName()">Add Attribute</button>
-		<input type="submit" name="submitButton" class="btn btn-block btn-warning my-2 submitButton" style="display:none;" value="Manual Entry"/>
-		<input type="submit" name="submitButton" class="btn btn-block btn-warning my-2 submitButton" style="display:none;" value="Upload CSV"/>
-	</form>
-<jsp:include page="../layout/footer.jsp" />
-
+   <!-- End Container fluid  -->
+<jsp:include page="/views/new-layout/footer.jsp" />
 <script>
-	var count = 0;
-	function addAttributeName() {
-		var regex = /^\S*$/;
-		if (!regex.test($("#dataSetName").val()) || $("#dataSetName").val() == "") {
-			alert("Do not leave the data set name empty and remove any spaces in the data set name!")
-		} else {
-			$(".submitButton").show();
-			$(".submitButton").prop("disabled", true);
-			count++;
-			var string = '<hr><div class="form-group"><strong>Attribute Name No '+count+': </strong><input type="text" class="form-control" name="attributeName" onchange="insertName(this)")/></div>';
-			string += '<div class="form-group" id="attribute_'+count+'">'
-				+'<label for="attributeType_'+count+'">Type</label>'
-				+'<select class="form-control" name="attributeType_'+count+'" onchange="attributeSelect($(this).val(), '+count+');">'
-					+'<option>Please Select</option>'
-					+'<option>Nominal</option>'
-					+'<option>Numeric</option>'
-				+'</select>'
-			+'</div><div class="form-group" id="attOption_'+count+'"></div>';
-			$("#structureBuilder").append(string);	
-		}
-	}
-	
-	function attributeSelect(value, index) {
-		if(value == "Nominal") {
-			var string = '<div class="form-group"><label for="option_'+count+'">Options</label>'
-				+'<div id="insertOption_'+count+'">'
-					+'<div class="form-group">'
-						+'<input type="text" name="option_'+count+'" class="form-control">'
-					+'</div>'
-				+'</div>'
-				+'<button class="btn btn-block btn-success" type="button" onclick="addOption('+index+')">Add Option</button>'
-			+'</div>';
-			$("#attOption_"+index).html(string);
-		} else if(value = "Numeric") {
-			var string = '<div class="form-group"><input type="hidden" name="option_'+count+'" value=""/></div>';
-			$("#attOption_"+index).html(string);
-		}
-	}
-	
-	function insertName(a) {
-		if(a.value == null || a.value == "" ) {
-			$(".submitButton").prop("disabled", true);
-		} else {
-			$(".submitButton").prop("disabled", false);
-		}
-	}
-	
-	
-	function addOption(index) {
-		var string = '<div class="form-group"><input type="text" name="option_'+count+'" class="form-control"></div>';
-		$("#insertOption_"+index).append(string);
-	}
-	
-	function enterStructureString() {
-		$(".submitButton").show();
-		if($("#structureString").val() == "" ||  $("#structureString").val() == null) {
-			$(".submitButton").prop("disabled", true);
-			$("#addAttribute").prop("disabled", false);
-		} else {
-			$(".submitButton").prop("disabled", false);
-			$("#addAttribute").prop("disabled", true);
-		}
-	}
-	
-</script>
+function viewStructure(structure_id) {
+	$.get("http://localhost:8080/weka-tutorial/StructureData", {'structure_id' : structure_id}, function (data) {
+		$("#structureListDiv").hide();
+		$("#structureStringDiv").show();
+		$(".structureString").html(data.structure_string);
+		$("#structureName").html(data.structure_name);
+	}, "json");
+}
 
+function closeDiv() {
+	$("#structureListDiv").show();
+	$("#structureStringDiv").hide();
+	$("#selectStructureDiv").hide();
+	$(".structureString").html("");
+	$("#structureName").html("");
+}
+
+function selectStructure(structure_id) {
+	$.get("http://localhost:8080/weka-tutorial/StructureData", {'structure_id' : structure_id}, function (data) {
+		console.log(data);
+		$("#insert_structure_id").val(structure_id);
+		$("#selectStructureDiv").show();
+		$("#structureListDiv").hide();
+		$(".structureString").val(data.structure_string);
+		$(".structureName").html(data.structure_name + " Selected");
+	}, "json");
+}
+</script>
