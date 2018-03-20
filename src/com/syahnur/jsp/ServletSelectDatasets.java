@@ -48,7 +48,7 @@ public class ServletSelectDatasets extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("listString", listString);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/old-select.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/select.jsp");
 		rd.forward(request, response);	
 	}
 

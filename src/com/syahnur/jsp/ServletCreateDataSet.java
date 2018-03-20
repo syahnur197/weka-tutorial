@@ -91,7 +91,7 @@ public class ServletCreateDataSet extends HttpServlet {
 						tableContent += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger deleteRowButton'/></td>";
 						tableHeader += "<th style='width:150px'>Option</th>";
 					} else {
-						 String[] atts = structureString.split(",");
+						String[] atts = structureString.split(",");
 				         for (int i = 0; i < atts.length; i++) {
 				              tableContent += "<td style='width:150px'>";
 				              String att = atts[i].trim();
@@ -99,7 +99,7 @@ public class ServletCreateDataSet extends HttpServlet {
 				              if ( indexOfBracket < 0){//numeric or something else
 				            	  tableHeader += "<th name='attributeName' class='attributeName' style='width:150px'>" + deCamelCasealize(att) + " <input type='hidden' name='attributeName' value='" + att + "'/></th>";
 				            	  tableContent += "<input type='text' name='"+att+"' class='form-control'/>";
-				              } else {//it's a nominal attribute
+				              }else{//it's a nominal attribute
 				                   String attName = att.substring(0, indexOfBracket);
 				                   tableHeader += "<th name='attributeName' class='attributeName' style='width:150px'>" + deCamelCasealize(attName) + " <input type='hidden' name='attributeName' value='" + attName + "'/></th>";
 				                   String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
