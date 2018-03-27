@@ -15,5 +15,5 @@
 
 <div class="container mb-5">
 	<div class="jumbotron">
-		<a href="/weka-tutorial/index.jsp"><h1>UTB Data Analytic</h1></a>
+		<a href="/weka-tutorial/old-index.jsp"><h1>UTB Data Analytic</h1></a>
 	</div>

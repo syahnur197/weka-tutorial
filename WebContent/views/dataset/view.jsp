@@ -2,6 +2,7 @@
 	<%
 		String tableString = request.getAttribute("tableString").toString();
 		int dataset_id = (int) request.getAttribute("dataset_id");
+		String elapsed = request.getAttribute("elapsed").toString();
 	%>
 	<!-- Page wrapper  -->
 	<div class="page-wrapper">
@@ -9,6 +10,7 @@
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
            		<h3 class="text-primary">View Structure</h3>
+           		<p><%= elapsed %> second response time</p>
 			</div>
        		<div class="col-md-7 align-self-center">
            		<ol class="breadcrumb">
@@ -47,7 +49,7 @@
 									</table>
 								</div>
 								<input type='hidden' name='dataset_id' value='<%= dataset_id %>' />
-								<input type='submit' name='submit' value='Update' class='btn btn-block btn-success my-3'/>
+								<input type='submit' id="submitButton" name='submit' value='Update' class='btn btn-block btn-success my-3' style="display:none;"/>
 							</form>
 						</div>
 					</div>
@@ -60,8 +62,12 @@
 	$(function() {
 		$("#edit_cells").on('click', function() {
 			$(this).hide();
+			/*$.map($('.valueCell'), function (el) { 
+				el.nextElementSibling.value = el.textContent;
+			});*/
 			$('.valueCell').hide();
 			$('.valueCell').next().show();
+			$("#submitButton").show();
 		});
 	});
 </script>

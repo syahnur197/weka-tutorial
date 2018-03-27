@@ -17,10 +17,10 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div  class="float-right">
-					<form action="#" method="POST">
-						<input type="hidden" name="trainingData" value="" />
-						<input type="hidden" name="testingData" value="" />
-						<input type="submit" value="Get Prediction" class="btn btn-warning" />
+					<form action="/weka-tutorial/PredictionCreate" method="POST" id="createTaskForm">
+						<input type="hidden" name="trainingData" id="trainingData" value="" />
+						<input type="hidden" name="testingData" id="testingData" value="" />
+						<input type="submit" name="submitButton" id="getPredictionButton" value="Get Prediction" class="btn btn-warning" disabled/>
 					</form>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 				<div class="col-lg-6">
 					<div class="card">
 						<h3> Training Data </h3>
-						<p id="trainSelected" style="display:none"> Helloo</p>
+						<p id="trainSelected" style="display:none"></p>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -66,6 +66,9 @@
 		var val = $(e).find(".train_dataset_name").html();
 		$("#trainSelected").show().html(val);
 		$("#testSelected").hide().empty();
+		$("#testingData").val();
+		$("#trainingData").val(dataset_id);
+		$("#getPredictionButton").prop("disabled", true);
 		$.get("http://localhost:8080/weka-tutorial/ServletTestList", {"structure_id" : structure_id, "dataset_id" : dataset_id}, function(data) {
 			console.log(data);
 			var list = "";
@@ -79,6 +82,8 @@
 	function selectTest(e, dataset_id) {
 		var val = $(e).find(".test_dataset_name").html();
 		$("#testSelected").show().html(val);
+		$("#testingData").val(dataset_id);
+		$("#getPredictionButton").prop("disabled", false);
 		
 	}
 </script>

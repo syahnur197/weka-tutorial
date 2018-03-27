@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo-2.png">
     <title>UTB Data Mining</title>
 	<link href="/weka-tutorial/css/lib/dropzone/dropzone.css" rel="stylesheet">
     <link href="/weka-tutorial/css/lib/chartist/chartist.min.css" rel="stylesheet">
@@ -45,10 +45,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.jsp">
                         <!-- Logo icon -->
-                        <b><img src="/weka-tutorial/images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="/weka-tutorial/images/logo-2.png" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="/weka-tutorial/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        <span>UTB Data Mining<!--img src="/weka-tutorial/images/logo-text.png" alt="homepage" class="dark-logo" /--></span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -60,14 +60,14 @@
                         <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
                     <!-- User profile and search -->
-                    <ul class="navbar-nav my-lg-0">
+                    <!-- <ul class="navbar-nav my-lg-0">
 
-                        <!-- Search -->
+                        Search
                         <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
                                 <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                         </li>
-                        <!-- Comment -->
+                        Comment
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
 								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
@@ -79,28 +79,28 @@
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
                                                 <div class="mail-contnet">
@@ -115,8 +115,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- End Comment -->
-                        <!-- Messages -->
+                        End Comment
+                        Messages
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
 								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
@@ -128,28 +128,28 @@
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="user-img"> <img src="/weka-tutorial/images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="user-img"> <img src="/weka-tutorial/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="user-img"> <img src="/weka-tutorial/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
-                                            <!-- Message -->
+                                            Message
                                             <a href="#">
                                                 <div class="user-img"> <img src="/weka-tutorial/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
                                                 <div class="mail-contnet">
@@ -164,8 +164,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- End Messages -->
-                        <!-- Profile -->
+                        End Messages
+                        Profile
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/weka-tutorial/images/users/5.jpg" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
@@ -174,7 +174,7 @@
                                 </ul>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </nav>
         </div>
@@ -192,7 +192,7 @@
                         <li class="nav-label">Advance</li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Task</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="task/view.jsp">View</a></li>
+                                <li><a href="/weka-tutorial/TaskSelect">View</a></li>
                                 <li><a href="/weka-tutorial/TaskCreate">Create</a></li>
                             </ul>
                         </li>
@@ -204,7 +204,7 @@
                         </li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-database"></i><span class="hide-menu">Data Set</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/weka-tutorial/DatasetView">View</a></li>
+                                <li><a href="/weka-tutorial/DatasetSelect">View</a></li>
                                 <li><a href="/weka-tutorial/DatasetCreate">Create</a></li>
                             </ul>
                         </li>

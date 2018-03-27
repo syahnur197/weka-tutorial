@@ -89,7 +89,7 @@ function viewStructure(structure_id) {
 		$("#structureListDiv").hide();
 		$("#structureStringDiv").show();
 		$(".structureString").html(data.structure_string);
-		$("#structureName").html(data.structure_name);
+		$(".structureName").html(data.structure_name);
 	}, "json");
 }
 

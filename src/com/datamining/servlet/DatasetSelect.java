@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ import com.syahnur.jsp.ConnectionManager;
 @WebServlet("/DatasetSelect")
 public class DatasetSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,91 +41,22 @@ public class DatasetSelect extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dataset_id;
-		HttpSession session = request.getSession();
-		if (request.getParameter("dataset_id") == null) {
-			session.setAttribute("message", "No dataset id is provided!");
-			session.setAttribute("success", false);
-			response.sendRedirect("/weka-tutorial/index.jsp");
-		} else {
-			dataset_id = Integer.parseInt(request.getParameter("dataset_id"));
-			ConnectionManager cm = new ConnectionManager();
-			String sql = "SELECT `dataset`.*, `structure`.`structure_string` FROM `dataset` JOIN `structure` ON `dataset`.`structure_id` = `structure`.`structure_id` WHERE dataset_id = ? ";
-			String structureString = "";
-			PreparedStatement psmt = null;
-			FileOutputStream output = null;
-			PrintWriter out = response.getWriter();
-			byte[] buffer = new byte[4096];
-			File file = new File("C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/data.csv");
-			try {
-				psmt = cm.getPreparedStatement(sql);
-				psmt.setInt(1, dataset_id);
-				ResultSet myRs = psmt.executeQuery();
-				if(myRs.next()) {
-					InputStream blob = myRs.getBinaryStream("dataset_file");
-					structureString = myRs.getString("structure_string");
-					output = new FileOutputStream(file);
-					int b = 0;
-					while (( b = blob.read(buffer)) != -1) {
-						output.write(buffer, 0, b);
-					}
-					output.close();
-					String[] atts = structureString.split(",");			
-					
-					CSVReader reader = new CSVReader(new FileReader(file));
-		            String [] nextLine;
-		            String[] header = reader.readNext();
-		            String tableString = "";
-		              
-		            if (header != null) {
-		               tableString += "<tr>";
-		               for(int i = 0; i < header.length; i++) {
-		            	   tableString += "<th style='width:150px'>"+header[i]+" <input type='hidden' name='attributeName' value='" + header[i] + "'/></th>";
-		               }
-		               tableString += "</tr>";
-		               while ((nextLine = reader.readNext()) != null) {
-		            	 tableString += "<tr>";
-		                 for (int i = 0; i < nextLine.length; i++) {
-		                	 tableString += "<td style='width:150px'><span class='valueCell'>"+nextLine[i] + "</span> ";
-		                	 for (int j = 0; j < atts.length; j++) {
-		         				String att = atts[j].trim();
-		         				int indexOfBracket = att.indexOf('[');
-		         				if ( indexOfBracket < 0 && j == i){
-		         					tableString += "<input type='text' name='"+att+"' class='form-control' style='display:none' value='" + nextLine[i] + "'/>";
-		         				} else if (j == i) {
-		         					String attName = att.substring(0, indexOfBracket);
-		         					String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
-		         					tableString += "<select class='form-control' name='"+attName+"' style='display:none'>";
-		         					for (int k = 0; k < nominalValues.length; k++) {
-		         						String chosen = "";
-		         						if (nominalValues[k].equals(nextLine[i])) {
-		         							chosen = "selected";
-		         						}
-		         						tableString += "<option " + chosen + ">"+nominalValues[k]+"</option>";
-		         					}
-		         					tableString += "</select>";
-		         				}
-		         			}
-		                	 tableString += "</td>";
-		                 }
-		                 tableString += "</tr>";
-		               }
-		            }
-		            reader.close();
-		            request.setAttribute("tableString", tableString);
-		            request.setAttribute("dataset_id", dataset_id);
-					RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/view.jsp");
-					rd.forward(request, response);
-				} else {
-					session.setAttribute("message", "Dataset Is Not Available!");
-					session.setAttribute("success", false);
-					response.sendRedirect("/weka-tutorial/index.jsp");
-				}
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		ConnectionManager cm = new ConnectionManager();
+		cm.get("dataset");
+		ResultSet myRs = cm.getResult();
+		String listString = "";
+		try {
+			do {
+				listString += "<li>";
+				listString += "<a href='/weka-tutorial/DatasetView?dataset_id="+myRs.getInt("dataset_id")+"' class='text-info'><i class=\"fa fa-check text-info\"></i> "+myRs.getString("dataset_name")+"</a></li>";
+			} while(myRs.next());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		request.setAttribute("listString", listString);
+		RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/select.jsp");
+		rd.forward(request, response);	
 	}
 
 	/**
@@ -134,5 +66,39 @@ public class DatasetSelect extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+//	private void getStructureInput(String structureString) {
+//		String[] atts = structureString.split(",");	
+//		String tableString = "";
+//		for (int j = 0; j < atts.length; j++) {
+//			String att = atts[j].trim();
+//			int indexOfBracket = att.indexOf('[');
+//			if ( indexOfBracket < 0){
+//				tableString = "<input type='text' name='"+att+"' class='form-control' style='display:none'/>";
+//				structure.add(tableString);
+//			} else {
+//				String attName = att.substring(0, indexOfBracket);
+//				String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
+//				tableString = "<select class='form-control' name='"+attName+"' style='display:none'>";
+//				for (int k = 0; k < nominalValues.length; k++) {
+//					tableString += "<option>"+nominalValues[k]+"</option>";
+//				}
+//				tableString += "</select>";
+//
+//				structure.add(tableString);
+//			}
+//		}
+//	}
+//	
+//	private String getInput(int col) {
+//		return structure.get(col).toString();
+//	}
+	
+//	public static void main(String[] args) {
+//		getStructureInput("Gender[Male;Female],Nationality[Kuwait;SaudiArabia;Jordan;USA;Lebanon;Iran;Venezuela;Egypt;Tunis;Morocco;Syria;Palestine;Iraq;Lybia],PlaceOfBirth[Kuwait;SaudiArabia;USA;Jordan;Lebanon;Iran;Venezuela;Egypt;Tunis;Morocco;Syria;Palestine;Iraq;Lybia],StageID[LowerLevel;MiddleSchool;HighSchool],GradeID[G-02;G-04;G-05;G-06;G-07;G-08;G-09;G-10;G-11;G-12],SectionID[A;B;C],Topic[IT;Math;Arabic;English;Quran;Science;French;Spanish;History;Biology;Chemistry;Geology],Semester[F;S],Relation[Father;Mum],RaisedHands,VisitedResources,AnnouncementsView,Discussion,ParentAnsweringSurvey[Yes;No],ParentschoolSatisfaction[Good;Bad],StudentAbsenceDays[Above-7;Under-7],Class[L;M;H]");
+//		System.out.println(getInput(6));
+//	}
+	
+	
 
 }

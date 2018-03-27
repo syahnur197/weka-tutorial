@@ -1,7 +1,5 @@
-Gender,Nationality,PlaceOfBirth,StageID,GradeID,SectionID,Topic,Semester,Relation,RaisedHands,VisitedResources,AnnouncementsView,Discussion,ParentAnsweringSurvey,ParentschoolSatisfaction,StudentAbsenceDays,Class
-Male,Kuwait,Kuwait,LowerLevel,G-02,A,IT,F,Father,11,22,33,44,Yes,Good,Above-7,L
-Female,Kuwait,Kuwait,LowerLevel,G-02,A,IT,F,Father,22,33,44,55,Yes,Good,Above-7,M
-Male,Kuwait,Kuwait,LowerLevel,G-02,A,IT,F,Father,33,44,55,66,Yes,Good,Above-7,H
-Female,Kuwait,Kuwait,LowerLevel,G-02,A,IT,F,Father,44,55,66,77,Yes,Good,Above-7,L
-Male,Kuwait,Kuwait,LowerLevel,G-02,A,IT,F,Father,55,66,77,88,Yes,Good,Above-7,M
-Female,Kuwait,Kuwait,LowerLevel,G-02,A,IT,F,Father,66,77,88,99,Yes,Good,Above-7,H
+Gender,Assignment_3,Assignment_4,Negara
+Female,22,66,Brunei
+Male,33,77,Indonesia
+Female,44,88,Brunei
+Male,55,99,Indonesia

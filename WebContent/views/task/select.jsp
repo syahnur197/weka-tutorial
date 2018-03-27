@@ -13,12 +13,12 @@
 		<!-- Bread crumb -->
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
-           		<h3 class="text-primary">View Data Set</h3>
+           		<h3 class="text-primary">View Task</h3>
 			</div>
        		<div class="col-md-7 align-self-center">
            		<ol class="breadcrumb">
                		<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-               		<li class="breadcrumb-item">Data Set</li>
+               		<li class="breadcrumb-item">Task</li>
                		<li class="breadcrumb-item active">View</li>
            		</ol>
        		</div>
@@ -28,7 +28,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-title">
-							<h4>Dataset List</h4>
+							<h4>Task List</h4>
 						</div>
 						<div class="card-body">
 							<ul class="list-icons">
@@ -38,7 +38,7 @@
 					</div>
 					<div class="card" style='display:none;' id="viewDatasetDiv">
 						<h4><span id="viewDataset"></span> is selected to be viewed</h4>
-						<form method="post" action="/weka-tutorial/DatasetView">
+						<form method="post" action="/weka-tutorial/ServletGetBlob">
 							<div class="form-group">
 								<input type="hidden" name="dataset_id" id="dataset_id" value=""/>
 								<input type="submit" value="View" class="btn btn-primary btn-block"/>

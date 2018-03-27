@@ -1,52 +1,64 @@
 <jsp:include page="../new-layout/header.jsp" />
 	<%
-		String table = request.getAttribute("tableString").toString();
+		String tableString = request.getAttribute("tableString").toString();
 		String percentage = request.getAttribute("percentageString").toString();
-		int trainDataset_id = (int)request.getAttribute("trainDataset_id");
-		int testDataset_id = (int)request.getAttribute("testDataset_id");
-	%>;
+		int task_id = (int) request.getAttribute("task_id");
+	%>
 	<!-- Page wrapper  -->
 	<div class="page-wrapper">
 		<!-- Bread crumb -->
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
-           		<h3 class="text-primary">Create Task</h3>
+           		<h3 class="text-primary">View Task</h3>
 			</div>
        		<div class="col-md-7 align-self-center">
            		<ol class="breadcrumb">
                		<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                		<li class="breadcrumb-item">Task</li>
-               		<li class="breadcrumb-item active">Prediction</li>
+               		<li class="breadcrumb-item active">View</li>
            		</ol>
        		</div>
    		</div>
-		<div class="container-fluid">
+   		<div class="container-fluid">
+	   		<%
+				String message = "";
+				if (session.getAttribute("message") != null && session.getAttribute("success") != null) {
+					boolean success = (boolean)session.getAttribute("success");
+					if (success) {
+						message = "<div class='alert alert-success'><strong>Success! </strong>"+session.getAttribute("message").toString()+"</div>";
+					} else {
+						message = "<div class='alert alert-danger'><strong>Warning! </strong>"+session.getAttribute("message").toString()+"</div>";
+					}
+					session.removeAttribute("message");
+					out.println(message);
+				}
+			%>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-						<form id="saveTaskForm" action="/weka-tutorial/TaskSave" method="POST">
-							<h3 class="card-title">Prediction Result</h3>
-							<div class='table-responsive'>
-								<table class='table table-striped table-hover' id="predictionTable" style='text-align: center'>
-									<tr>
-										<th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (NB)</th><th>NB Matches</th>
-									</tr>
-									<%= table %>
-								</table>
-							</div>
-							<%= percentage %>
-							<hr>
-							<button type="button" class='btn btn-primary mx-1' onclick="drawJ48Chart();">Show J48 Pie Chart</button>
-							<button type="button" class='btn btn-primary mx-1' onclick="drawNBChart();">Show NB Pie Chart</button>
-							<input type="hidden" name="trainDataset_id" value="<%= trainDataset_id %>" />
-							<input type="hidden" name="testDataset_id" value="<%= testDataset_id %>" />
-							<input type="text" name="taskName" id="taskName" value="" placeholder="Enter Task Name" class="form-control mt-3" required/>
-							<input type="submit" class="btn btn-block btn-primary mt-3" value="Save Task"/>
-						</form>
+						<div class="card-title">
+							<h4>Task</h4>
+						</div>
+						<div class="card-body" id="task-result">
+							<form id='TaskUpdateForm' method="post" action="/weka-tutorial/TaskUpdate">
+								<div class="table-responsive">
+									<table class='table table-striped table-bordered table-hover' id="predictionTable">
+										<tr>
+											<th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (NB)</th><th>NB Matches</th>
+										</tr>
+										<%= tableString %>
+									</table>
+								</div>
+								<input type='submit' id="submitButton" name='submit' value='Update' class='btn btn-block btn-success my-3'/>
+								<%= percentage %>
+								<hr>
+								<input type='hidden' name='task_id' value='<%= task_id %>' />
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 		<div class="container-fluid" id="piechartDiv" style="display:none;">
 			<div class="row">
 				<div class="col-lg-12">
@@ -57,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+   	</div>
 <jsp:include page="../new-layout/footer.jsp" />
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -84,7 +96,6 @@
 		$('html, body').animate({
 	        scrollTop: $("#piechartDiv").offset().top
 	    }, 1000);
-		$("#task-result").hide();
 		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 		
 		chart.draw(data, options);
@@ -120,6 +131,7 @@
 	function closePieChart() {
 		$("#piechartDiv").hide();
 	}
+	
 	function changeValue(i) {
 		$('#actualClass_'+i).hide();
 		$('#editActualClass_'+i).show();
@@ -137,7 +149,7 @@
 	  	actualClass.html(newVal);
 	  	actualClass.show();
 		$('#editActualClass_'+i).hide();
-				
+		
 		if (j48 == newVal) {
 			j48Color.html("matched <input type='hidden' name='j48ClassMatch' value='matched'>");
 			j48Color.css("color", "green");
@@ -160,7 +172,7 @@
 		var j48Unmatches = 0;
 		var nbMatches = 0;
 		var nbUnmatches = 0;
-		for(var j = 0; j < rowCount - 1; j++) {
+		for(var j = 1; j < rowCount; j++) {
 			if($('#actualClass_'+j).html() == $('#j48_'+j+" :input").val()) {
 				j48Matches++;
 			} else {

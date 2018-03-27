@@ -152,5 +152,23 @@ public class CSVWriter {
         pw.close();
 		return fileName;
 	}
+	
+	public String createCSV4(String fileName) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(new File(fileName));
+		StringBuilder sb = new StringBuilder();
+		String[] actualClass = request.getParameterValues("actualClass");
+		String[] j48Class = request.getParameterValues("j48Class");
+		String[] nbClass = request.getParameterValues("nbClass");
+		String[] j48ClassMatch = request.getParameterValues("j48ClassMatch");
+		String[] nbClassMatch = request.getParameterValues("nbClassMatch");
+		int count = actualClass.length;
+		for(int i = 0; i < count; i++) {
+			sb.append(actualClass[i] + ", " +  j48Class[i] + ", " + j48ClassMatch[i] + ", " + nbClass[i] + ", " + nbClassMatch[i]);
+			sb.append("\n");
+		}
+		pw.write(sb.toString());
+        pw.close();
+		return fileName;
+	}
 
 }

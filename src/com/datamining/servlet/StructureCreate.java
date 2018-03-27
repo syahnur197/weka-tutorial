@@ -32,6 +32,16 @@ public class StructureCreate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("message", "403: Forbidden Access");
+		session.setAttribute("success", false);
+		response.sendRedirect("/weka-tutorial/index.jsp");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String structureString = request.getParameter("structureString");
 		String structureName = request.getParameter("structureName");
 		if(structureString.isEmpty()) {
@@ -85,14 +95,6 @@ public class StructureCreate extends HttpServlet {
 		session.setAttribute("message", message);
 		session.setAttribute("success", success);
 		response.sendRedirect("/weka-tutorial/index.jsp");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

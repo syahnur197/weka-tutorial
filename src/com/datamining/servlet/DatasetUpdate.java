@@ -36,6 +36,16 @@ public class DatasetUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.setAttribute("message", "403: Forbidden Access");
+		session.setAttribute("success", false);
+		response.sendRedirect("/weka-tutorial/index.jsp");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int dataset_id = Integer.parseInt(request.getParameter("dataset_id"));
 		InputStream is = null;
 		String message = "";
@@ -55,7 +65,7 @@ public class DatasetUpdate extends HttpServlet {
 			if(row > 0) {
 				message = "Dataset is updated";
 				success = true;
-				url = "/weka-tutorial/DatasetSelect?dataset_id="+dataset_id;
+				url = "/weka-tutorial/index.jsp";
 			} else {
 				message = "Fail to update dataset";
 				success = false;
@@ -73,14 +83,6 @@ public class DatasetUpdate extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
