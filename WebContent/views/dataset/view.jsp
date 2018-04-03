@@ -41,7 +41,7 @@
 							<h4>Dataset</h4>
 						</div>
 						<div class="card-body">
-							<form id='updateDataset' method="post" action="DatasetUpdate">
+							<form id='updateDataset' method="post" action="https://weka-tutorial.azurewebsites.net/DatasetUpdate">
 								<input type='button' value='Edit Cells' id='edit_cells' class='btn btn-block btn-warning my-2'/>
 								<div class="table-responsive">
 									<table class='table table-striped table-bordered table-hover' style="table-layout:fixed;">

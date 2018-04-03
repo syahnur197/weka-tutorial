@@ -48,14 +48,14 @@ public class DatasetSelect extends HttpServlet {
 		try {
 			do {
 				listString += "<li>";
-				listString += "<a href='/weka-tutorial/DatasetView?dataset_id="+myRs.getInt("dataset_id")+"' class='text-info'><i class=\"fa fa-check text-info\"></i> "+myRs.getString("dataset_name")+"</a></li>";
+				listString += "<a href='https://weka-tutorial.azurewebsites.net/DatasetView?dataset_id="+myRs.getInt("dataset_id")+"' class='text-info'><i class=\"fa fa-check text-info\"></i> "+myRs.getString("dataset_name")+"</a></li>";
 			} while(myRs.next());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("listString", listString);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/select.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/dataset/select.jsp");
 		rd.forward(request, response);	
 	}
 

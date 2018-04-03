@@ -39,7 +39,7 @@ public class DatasetUpdate extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", "403: Forbidden Access");
 		session.setAttribute("success", false);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class DatasetUpdate extends HttpServlet {
 		ConnectionManager cm = new ConnectionManager();
 		String sql = "UPDATE `dataset` SET `dataset_file` = ? WHERE `dataset_id` = ?";
 		CSVWriter cw = new CSVWriter(request);
-		String updateData = "C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/updateData.csv";
+		String updateData = "https://weka-tutorial.azurewebsites.net/assets/files/updateData.csv";
 		cw.createCSV3(updateData);
 		is = new FileInputStream(new File(updateData));
 		try {
@@ -65,11 +65,11 @@ public class DatasetUpdate extends HttpServlet {
 			if(row > 0) {
 				message = "Dataset is updated";
 				success = true;
-				url = "/weka-tutorial/index.jsp";
+				url = "index.jsp";
 			} else {
 				message = "Fail to update dataset";
 				success = false;
-				url = "/weka-tutorial/ServletSelectDatasets";
+				url = "ServletSelectDatasets";
 			}	
 			
 			HttpSession session = request.getSession();

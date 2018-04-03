@@ -17,7 +17,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div  class="float-right">
-					<form action="/weka-tutorial/PredictionCreate" method="POST" id="createTaskForm">
+					<form action="https://weka-tutorial.azurewebsites.net/PredictionCreate" method="POST" id="createTaskForm">
 						<input type="hidden" name="trainingData" id="trainingData" value="" />
 						<input type="hidden" name="testingData" id="testingData" value="" />
 						<input type="submit" name="submitButton" id="getPredictionButton" value="Get Prediction" class="btn btn-warning" disabled/>
@@ -69,7 +69,7 @@
 		$("#testingData").val();
 		$("#trainingData").val(dataset_id);
 		$("#getPredictionButton").prop("disabled", true);
-		$.get("http://localhost:8080/weka-tutorial/ServletTestList", {"structure_id" : structure_id, "dataset_id" : dataset_id}, function(data) {
+		$.get("https://weka-tutorial.azurewebsites.net/ServletTestList", {"structure_id" : structure_id, "dataset_id" : dataset_id}, function(data) {
 			console.log(data);
 			var list = "";
 			data.dataset.forEach( function(ds) {

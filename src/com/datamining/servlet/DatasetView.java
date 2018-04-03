@@ -46,7 +46,7 @@ public class DatasetView extends HttpServlet {
 		if (request.getParameter("dataset_id") == null) {
 			session.setAttribute("message", "No dataset id is provided!");
 			session.setAttribute("success", false);
-			response.sendRedirect("/weka-tutorial/index.jsp");
+			response.sendRedirect("index.jsp");
 		} else {
 			dataset_id = Integer.parseInt(request.getParameter("dataset_id"));
 			ConnectionManager cm = new ConnectionManager();
@@ -56,7 +56,7 @@ public class DatasetView extends HttpServlet {
 			FileOutputStream output = null;
 			PrintWriter out = response.getWriter();
 			byte[] buffer = new byte[4096];
-			File file = new File("C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/data.csv");
+			File file = new File("https://weka-tutorial.azurewebsites.net/assets/files/data.csv");
 			try {
 				psmt = cm.getPreparedStatement(sql);
 				psmt.setInt(1, dataset_id);
@@ -116,12 +116,12 @@ public class DatasetView extends HttpServlet {
 		            request.setAttribute("tableString", tableString);
 		            request.setAttribute("dataset_id", dataset_id);
 		            request.setAttribute("elapsed", elapsed/1000);
-					RequestDispatcher rd = request.getRequestDispatcher("/views/dataset/view.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("views/dataset/view.jsp");
 					rd.forward(request, response);
 				} else {
 					session.setAttribute("message", "Dataset is Not Available!");
 					session.setAttribute("success", false);
-					response.sendRedirect("/weka-tutorial/index.jsp");
+					response.sendRedirect("index.jsp");
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

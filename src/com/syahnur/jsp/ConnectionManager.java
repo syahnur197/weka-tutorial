@@ -6,9 +6,10 @@ import java.util.HashMap;
 import javax.sql.*;
 
 public class ConnectionManager {
-	private static String url = "jdbc:mysql://localhost:3306/weka_db?useSSL=false";
-	private static String username = "root";
-	private static String password = "";
+	// private static String url = "jdbc:mysql://localhost:3306/weka_db?useSSL=false";
+	private static String url = "jdbc:mysql://127.0.0.1:55713/localdb?useSSL=false";
+	private static String username = "azure";
+	private static String password = "6#vWHD_$";
 	private static Connection conn;
 	private static String myQuery;
 	private static ResultSet myRs;

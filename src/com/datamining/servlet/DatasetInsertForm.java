@@ -37,7 +37,7 @@ public class DatasetInsertForm extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", "403: Forbidden Access");
 		session.setAttribute("success", false);
-		response.sendRedirect("/weka-tutorial/index.jsp");		
+		response.sendRedirect("index.jsp");		
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class DatasetInsertForm extends HttpServlet {
 			if (myRs.isBeforeFirst()) {
 				session.setAttribute("success", false);
 				session.setAttribute("message", datasetName + " is already exist! Choose different name!");
-				response.sendRedirect("/weka-tutorial/DatasetCreate");
+				response.sendRedirect("DatasetCreate");
 			} else {
 				if (submitValue.equals("Manual Entry")) {
 					url = "views/dataset/manual-entry.jsp";

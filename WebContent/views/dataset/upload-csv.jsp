@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card" id="structureListDiv">
-						<form action="/weka-tutorial/DatasetUpload" method="post" id="upload_csv_form" enctype="multipart/form-data">
+						<form action="https://weka-tutorial.azurewebsites.net/DatasetUpload" method="post" id="upload_csv_form" enctype="multipart/form-data">
 							<% 
 								String datasetName = request.getAttribute("datasetName").toString();
 								int structureId = (int)request.getAttribute("structureId");							

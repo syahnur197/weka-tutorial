@@ -44,7 +44,7 @@ public class TaskCreate extends HttpServlet {
 					list += "<li><a href='#' onclick='selectTrain(this, " + myRs.getInt("structure_id") + ", " + myRs.getInt("dataset_id") + ")'><i class='fa fa-check text-info'></i><span class='train_dataset_name'>" + myRs.getString("dataset_name") + "</span></a></li>";
 				} while (myRs.next());
 				request.setAttribute("list", list);
-				RequestDispatcher rd = request.getRequestDispatcher("/views/task/create.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("views/task/create.jsp");
 				rd.forward(request, response);
 			} else {
 				// 

@@ -40,7 +40,7 @@
 							<h4>Task</h4>
 						</div>
 						<div class="card-body" id="task-result">
-							<form id='TaskUpdateForm' method="post" action="/weka-tutorial/TaskUpdate">
+							<form id='TaskUpdateForm' method="post" action="https://weka-tutorial.azurewebsites.net/TaskUpdate">
 								<div class="table-responsive">
 									<table class='table table-striped table-bordered table-hover' id="predictionTable">
 										<tr>

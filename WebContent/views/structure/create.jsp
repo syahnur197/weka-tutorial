@@ -15,7 +15,7 @@
    	<div class="container-fluid">
       	<div class="row">
          	<div class="col-lg-12">
-               	<form action="../../StructureCreate" method="post">
+               	<form action="https://weka-tutorial.azurewebsites.net/StructureCreate" method="post">
             	<div class="card">
 	               	<div class="card-title">
 	                  	<h4>Create New Data Set</h4>

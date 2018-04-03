@@ -35,7 +35,7 @@ public class StructureCreate extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", "403: Forbidden Access");
 		session.setAttribute("success", false);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class StructureCreate extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", message);
 		session.setAttribute("success", success);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 }

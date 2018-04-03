@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-						<form id="saveTaskForm" action="/weka-tutorial/TaskSave" method="POST">
+						<form id="saveTaskForm" action="https://weka-tutorial.azurewebsites.net/TaskSave" method="POST">
 							<h3 class="card-title">Prediction Result</h3>
 							<div class='table-responsive'>
 								<table class='table table-striped table-hover' id="predictionTable" style='text-align: center'>

@@ -85,7 +85,7 @@
 <jsp:include page="/views/new-layout/footer.jsp" />
 <script>
 function viewStructure(structure_id) {
-	$.get("http://localhost:8080/weka-tutorial/StructureData", {'structure_id' : structure_id}, function (data) {
+	$.get("https://weka-tutorial.azurewebsites.net/StructureData", {'structure_id' : structure_id}, function (data) {
 		$("#structureListDiv").hide();
 		$("#structureStringDiv").show();
 		$(".structureString").html(data.structure_string);
@@ -102,7 +102,7 @@ function closeDiv() {
 }
 
 function selectStructure(structure_id) {
-	$.get("http://localhost:8080/weka-tutorial/StructureData", {'structure_id' : structure_id}, function (data) {
+	$.get("https://weka-tutorial.azurewebsites.net/StructureData", {'structure_id' : structure_id}, function (data) {
 		console.log(data);
 		$("#insert_structure_id").val(structure_id);
 		$("#selectStructureDiv").show();

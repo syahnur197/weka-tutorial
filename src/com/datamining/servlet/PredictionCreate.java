@@ -42,7 +42,7 @@ public class PredictionCreate extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", "403: Forbidden Access");
 		session.setAttribute("success", false);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -61,8 +61,8 @@ public class PredictionCreate extends HttpServlet {
 		PreparedStatement psmt = null;
 		FileOutputStream output = null;
 		byte[] buffer = new byte[4096];
-		String trainFileString = "C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/trainData.csv";
-		String testFileString = "C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/testData.csv";
+		String trainFileString = "https://weka-tutorial.azurewebsites.net/assets/files/trainData.csv";
+		String testFileString = "https://weka-tutorial.azurewebsites.net/assets/files/testData.csv";
 		File trainFile = new File(trainFileString);
 		File testFile = new File(testFileString);
 		try {

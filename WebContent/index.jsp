@@ -140,23 +140,23 @@
 						<div class="tab-pane active container card" id="selectStructure">
 							<div class="card-body">
 								<h4>Please select the structure</h4>
-								<a href="http://localhost:8080/weka-tutorial/views/structure/create.jsp"><button class='btn btn-primary my-1'>Create Structure</button></a>	
+								<a href="https://weka-tutorial.azurewebsites.net/views/structure/create.jsp"><button class='btn btn-primary my-1'>Create Structure</button></a>	
 								<ul class="list-group" id="structure-list-group"></ul>
 							</div>
 						</div>
 						<div class="tab-pane container card" id="selectTrain">
 							<div class="card-body">
 								<h4 class="selected-structure-name">{{ structure is not yet selected }}</h4>
-								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
+								<a href="https://weka-tutorial.azurewebsites.net/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-train-list-group"></ul>
 							</div>
 						</div>
 						<div class="tab-pane container card" id="selectTest">
 							<div class="card-body">
 								<h4 class="selected-structure-name">{{ structure is not yet selected }}</h4>
-								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
+								<a href="https://weka-tutorial.azurewebsites.net/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-test-list-group"></ul>
-								<form method="post" action="http://localhost:8080/weka-tutorial/PredictionCreate" style="display:none;" id="create-task-form">
+								<form method="post" action="https://weka-tutorial.azurewebsites.net/PredictionCreate" style="display:none;" id="create-task-form">
 									<input type="hidden" name="trainingData" id="trainingData" value="" />
 									<input type="hidden" name="testingData" id="testingData" value="" />
 									<input type="submit" value="Submit" class="btn btn-success" />
@@ -266,7 +266,7 @@
 		var string = "";
 		for(var i = 0; i < Object.keys(dataset).length; i++) {
 			if(dataset[i].getStructureId() == structureId) {
-				string += "<li class='list-group-item'> <a href='http://localhost:8080/weka-tutorial/DatasetView?dataset_id="+dataset[i].getId()+"'>"+dataset[i].getName()
+				string += "<li class='list-group-item'> <a href='https://weka-tutorial.azurewebsites.net/DatasetView?dataset_id="+dataset[i].getId()+"'>"+dataset[i].getName()
 				+ "</a><button onclick='selectTrain("+dataset[i].getId()+", "+count+")' class='btn btn-warning float-right'>Select Train Data</button>"
 				+ "</li>";
 			}
@@ -289,7 +289,7 @@
 		var string = "";
 		for(var i = 0; i < Object.keys(dataset).length; i++) {
 			if(dataset[i].getStructureId() == structureId && dataset[i].getId() != train_id) {
-				string += "<li class='list-group-item'><a href='http://localhost:8080/weka-tutorial/DatasetView?dataset_id="+dataset[i].getId()+"'>"+dataset[i].getName()
+				string += "<li class='list-group-item'><a href='https://weka-tutorial.azurewebsites.net/DatasetView?dataset_id="+dataset[i].getId()+"'>"+dataset[i].getName()
 				+ "</a><button onclick='selectTest("+dataset[i].getId()+")' class='btn btn-success float-right'>Select Test Data</button>"
 				+ "</li>";
 			}
@@ -310,16 +310,16 @@
 
 
 	$(function() {
-		$.get("http://localhost:8080/weka-tutorial/ServletDashboard", {}, function(data) {
+		$.get("https://weka-tutorial.azurewebsites.net/ServletDashboard", {}, function(data) {
 			var string = "";
 			var count = 1;
 			var taskCount = data.task.length;
 			data.task.forEach(function(d) {
 				string += "<tr>"
 					+ "<td>"+count+"</td>"
-					+ "<td><a href='http://localhost:8080/weka-tutorial/TaskView?task_id="+d.id+"'>"+d.name+"</a></td>"
-					+ "<td><a href='http://localhost:8080/weka-tutorial/DatasetView?dataset_id="+d.train_id+"'>"+d.train+"</a></td>"
-					+ "<td style='text-align: left'><a href='http://localhost:8080/weka-tutorial/DatasetView?dataset_id="+d.test_id+"'>"+d.test+"</a></td>"
+					+ "<td><a href='https://weka-tutorial.azurewebsites.net/TaskView?task_id="+d.id+"'>"+d.name+"</a></td>"
+					+ "<td><a href='https://weka-tutorial.azurewebsites.net/DatasetView?dataset_id="+d.train_id+"'>"+d.train+"</a></td>"
+					+ "<td style='text-align: left'><a href='https://weka-tutorial.azurewebsites.net/DatasetView?dataset_id="+d.test_id+"'>"+d.test+"</a></td>"
 					+ "</tr>";
 					count++;
 			});
@@ -327,7 +327,7 @@
 			$("#noOfTask").html(taskCount);
 		}, "json");		
 		
-		$.get("http://localhost:8080/weka-tutorial/ServletDataset", {}, function(data) {
+		$.get("https://weka-tutorial.azurewebsites.net/ServletDataset", {}, function(data) {
 			var allDataset = "";
 			var datasetCount = data.dataset.length;
 			var count = 0;
@@ -341,7 +341,7 @@
 			$("#noOfDataset").html(datasetCount);
 		}, "json");
 		
-		$.get("http://localhost:8080/weka-tutorial/ServletStructuresList", {}, function(data) {
+		$.get("https://weka-tutorial.azurewebsites.net/ServletStructuresList", {}, function(data) {
 			var structureCount = data.structure.length;
 			var string = "";
 			count = 0;

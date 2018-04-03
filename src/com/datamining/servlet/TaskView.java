@@ -45,7 +45,7 @@ public class TaskView extends HttpServlet {
 		if (request.getParameter("task_id") == null) {
 			session.setAttribute("message", "No task id is provided!");
 			session.setAttribute("success", false);
-			response.sendRedirect("/weka-tutorial/index.jsp");
+			response.sendRedirect("index.jsp");
 		} else {
 			task_id = Integer.parseInt(request.getParameter("task_id"));
 			ConnectionManager cm = new ConnectionManager();
@@ -54,7 +54,7 @@ public class TaskView extends HttpServlet {
 			FileOutputStream output = null;
 			PrintWriter out = response.getWriter();
 			byte[] buffer = new byte[4096];
-			File file = new File("C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/taskData.csv");
+			File file = new File("https://weka-tutorial.azurewebsites.net/assets/files/taskData.csv");
 			try {
 				psmt = cm.getPreparedStatement(sql);
 				psmt.setInt(1, task_id);
@@ -120,12 +120,12 @@ public class TaskView extends HttpServlet {
 					reader.close();
 		            request.setAttribute("tableString", tableString);
 		            request.setAttribute("task_id", task_id);
-					RequestDispatcher rd = request.getRequestDispatcher("/views/task/view.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("views/task/view.jsp");
 					rd.forward(request, response);
 				} else {
 					session.setAttribute("message", "Task is Not Available!");
 					session.setAttribute("success", false);
-					response.sendRedirect("/weka-tutorial/index.jsp");
+					response.sendRedirect("index.jsp");
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

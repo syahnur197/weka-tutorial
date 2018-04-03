@@ -39,14 +39,14 @@ public class TaskSelect extends HttpServlet {
 		try {
 			do {
 				listString += "<li>";
-				listString += "<a href='/weka-tutorial/TaskView?task_id="+myRs.getInt("task_id")+"' class='text-info'><i class=\"fa fa-check text-info\"></i> "+myRs.getString("task_name")+"</a></li>";
+				listString += "<a href='https://weka-tutorial.azurewebsites.net/TaskView?task_id="+myRs.getInt("task_id")+"' class='text-info'><i class=\"fa fa-check text-info\"></i> "+myRs.getString("task_name")+"</a></li>";
 			} while(myRs.next());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("listString", listString);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/task/select.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/task/select.jsp");
 		rd.forward(request, response);	
 	}
 

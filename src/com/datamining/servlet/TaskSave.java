@@ -40,7 +40,7 @@ public class TaskSave extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", "403: Forbidden Access");
 		session.setAttribute("success", false);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class TaskSave extends HttpServlet {
 				InputStream is = null;
 				
 				CSVWriter cw = new CSVWriter(request);
-				String uploadData = "C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/uploadTask.csv";
+				String uploadData = "https://weka-tutorial.azurewebsites.net/assets/files/uploadTask.csv";
 				cw.createCSV4(uploadData);
 				is = new FileInputStream(new File(uploadData));
 				
@@ -103,7 +103,7 @@ public class TaskSave extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", message);
 		session.setAttribute("success", success);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 		
 	}
 

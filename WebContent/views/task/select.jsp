@@ -38,7 +38,7 @@
 					</div>
 					<div class="card" style='display:none;' id="viewDatasetDiv">
 						<h4><span id="viewDataset"></span> is selected to be viewed</h4>
-						<form method="post" action="/weka-tutorial/ServletGetBlob">
+						<form method="post" action="https://weka-tutorial.azurewebsites.net/ServletGetBlob">
 							<div class="form-group">
 								<input type="hidden" name="dataset_id" id="dataset_id" value=""/>
 								<input type="submit" value="View" class="btn btn-primary btn-block"/>
@@ -48,7 +48,7 @@
 					<div class="card" style='display:none;' id="trainTestDiv">
 						<h4 style='display:none;'>Train Data: <span id="trainDataset"></span></h4>
 						<h4 style='display:none;'>Test Data: <span id="testDataset"></span></h4>
-						<form method="post" action="/weka-tutorial/ServletTrainTest">
+						<form method="post" action="https://weka-tutorial.azurewebsites.net/ServletTrainTest">
 							<div class="form-group">
 								<input type="hidden" name="trainDataset_id" id="trainDataset_id" value=""/>
 								<input type="hidden" name="testDataset_id" id="testDataset_id" value=""/>

@@ -40,7 +40,7 @@
 	<div class="modal fade" id="add-dataset-modal" tabindex="-1" role="dialog" aria-labelledby="addDatasetTitle" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
-	      <form action="../../ServletCreateDataSet" method="POST">
+	      <form action="https://weka-tutorial.azurewebsites.net/ServletCreateDataSet" method="POST">
 		      <div class="modal-header">
 		        <h5 class="modal-title" id="addDatasetTitle">Add Dataset</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -71,7 +71,7 @@
 
 <script>
 	$(function() {
-		$.get("http://localhost:8080/weka-tutorial/ServletStructuresList", {}, function(data) {
+		$.get("https://weka-tutorial.azurewebsites.net/ServletStructuresList", {}, function(data) {
 			for(var i = 0; i < data.structure.length; i++) {
 			    var string = "<li class='list-group-item'>"
 			    +"<button class='btn btn-warning mx-2' data-toggle='modal' data-target='#structure-string-modal' onclick='viewString(\"" + data.structure[i].string + "\")'>View String</button>"

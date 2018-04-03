@@ -13,15 +13,15 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/logo-2.png">
     <title>UTB Data Mining</title>
-	<link href="/weka-tutorial/css/lib/dropzone/dropzone.css" rel="stylesheet">
-    <link href="/weka-tutorial/css/lib/chartist/chartist.min.css" rel="stylesheet">
-	<link href="/weka-tutorial/css/lib/owl.carousel.min.css" rel="stylesheet" />
-    <link href="/weka-tutorial/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+	<link href="https://weka-tutorial.azurewebsites.net/css/lib/dropzone/dropzone.css" rel="stylesheet">
+    <link href="https://weka-tutorial.azurewebsites.net/css/lib/chartist/chartist.min.css" rel="stylesheet">
+	<link href="https://weka-tutorial.azurewebsites.net/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="https://weka-tutorial.azurewebsites.net/css/lib/owl.theme.default.min.css" rel="stylesheet" />
     <!-- Bootstrap Core CSS -->
-    <link href="/weka-tutorial/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="https://weka-tutorial.azurewebsites.net/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="/weka-tutorial/css/helper.css" rel="stylesheet">
-    <link href="/weka-tutorial/css/style.css" rel="stylesheet">
+    <link href="https://weka-tutorial.azurewebsites.net/css/helper.css" rel="stylesheet">
+    <link href="https://weka-tutorial.azurewebsites.net/css/style.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -45,10 +45,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.jsp">
                         <!-- Logo icon -->
-                        <b><img src="/weka-tutorial/images/logo-2.png" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="https://weka-tutorial.azurewebsites.net/images/logo-2.png" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span>UTB Data Mining<!--img src="/weka-tutorial/images/logo-text.png" alt="homepage" class="dark-logo" /--></span>
+                        <span>UTB Data Mining<!--img src="https://weka-tutorial.azurewebsites.net/images/logo-text.png" alt="homepage" class="dark-logo" /--></span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -130,28 +130,28 @@
                                         <div class="message-center">
                                             Message
                                             <a href="#">
-                                                <div class="user-img"> <img src="/weka-tutorial/images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                <div class="user-img"> <img src="https://weka-tutorial.azurewebsites.net/images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
                                             Message
                                             <a href="#">
-                                                <div class="user-img"> <img src="/weka-tutorial/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                <div class="user-img"> <img src="https://weka-tutorial.azurewebsites.net/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
                                             Message
                                             <a href="#">
-                                                <div class="user-img"> <img src="/weka-tutorial/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                                <div class="user-img"> <img src="https://weka-tutorial.azurewebsites.net/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
                                             Message
                                             <a href="#">
-                                                <div class="user-img"> <img src="/weka-tutorial/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                                <div class="user-img"> <img src="https://weka-tutorial.azurewebsites.net/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
                                                 </div>
@@ -167,7 +167,7 @@
                         End Messages
                         Profile
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/weka-tutorial/images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://weka-tutorial.azurewebsites.net/images/users/5.jpg" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="auth/logout"><i class="fa fa-power-off"></i> Logout</a></li>
@@ -188,24 +188,24 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
-                        <li> <a href="/weka-tutorial/index.jsp" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li> <a href="https://weka-tutorial.azurewebsites.net/index.jsp" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li class="nav-label">Advance</li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Task</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/weka-tutorial/TaskSelect">View</a></li>
-                                <li><a href="/weka-tutorial/TaskCreate">Create</a></li>
+                                <li><a href="https://weka-tutorial.azurewebsites.net/TaskSelect">View</a></li>
+                                <li><a href="https://weka-tutorial.azurewebsites.net/TaskCreate">Create</a></li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu">Structure</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/weka-tutorial/StructureView">View</a></li>
-                                <li><a href="/weka-tutorial/views/structure/create.jsp">Create</a></li>
+                                <li><a href="https://weka-tutorial.azurewebsites.net/StructureView">View</a></li>
+                                <li><a href="https://weka-tutorial.azurewebsites.net/views/structure/create.jsp">Create</a></li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-database"></i><span class="hide-menu">Data Set</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/weka-tutorial/DatasetSelect">View</a></li>
-                                <li><a href="/weka-tutorial/DatasetCreate">Create</a></li>
+                                <li><a href="https://weka-tutorial.azurewebsites.net/DatasetSelect">View</a></li>
+                                <li><a href="https://weka-tutorial.azurewebsites.net/DatasetCreate">Create</a></li>
                             </ul>
                         </li>
                     </ul>

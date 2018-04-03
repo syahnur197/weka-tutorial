@@ -51,7 +51,7 @@ public class StructureData extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("message", "Structure ID is not exist!");
 					session.setAttribute("success", false);
-					response.sendRedirect("/weka-tutorial/index.jsp");
+					response.sendRedirect("https://weka-tutorial.azurewebsites.net/index.jsp");
 				} else {
 					success = true;
 					while(myRs.next()) {
@@ -73,7 +73,7 @@ public class StructureData extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("message", "No structure ID provided");
 			session.setAttribute("success", false);
-			response.sendRedirect("/weka-tutorial/index.jsp");
+			response.sendRedirect("https://weka-tutorial.azurewebsites.net/index.jsp");
 		}
 		
 	}

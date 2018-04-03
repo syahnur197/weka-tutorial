@@ -43,7 +43,7 @@ public class DatasetUpload extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("message", "403: Forbidden Access");
 		session.setAttribute("success", false);
-		response.sendRedirect("/weka-tutorial/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class DatasetUpload extends HttpServlet {
 			}		
 		} else if (submitValue.equals("Upload as CSV")) {
 			CSVWriter cw = new CSVWriter(request);
-			String uploadData = "C:/Users/Syahnur197/workspace/weka-tutorial/WebContent/assets/files/uploadData.csv";
+			String uploadData = "https://weka-tutorial.azurewebsites.net/assets/files/uploadData.csv";
 			cw.createCSV3(uploadData);
 			is = new FileInputStream(new File(uploadData));
 		}
@@ -81,11 +81,11 @@ public class DatasetUpload extends HttpServlet {
 			if(row > 0) {
 				message = "File Uploaded to server";
 				success = true;
-				url = "/weka-tutorial/index.jsp";
+				url = "index.jsp";
 			} else {
 				message = "Fail to upload to server";
 				success = false;
-				url = "/weka-tutorial/DatasetSelect";
+				url = "DatasetSelect";
 			}	
 			
 			HttpSession session = request.getSession();

@@ -37,7 +37,7 @@ public class ServletTestList extends HttpServlet {
 		if(request.getParameter("structure_id") == null && request.getParameter("dataset_id") == null) {
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
-			out.println("{\"message\" : \"You're fucked\"}");
+			out.println("{\"message\" : \"You're tested\"}");
 		} else {
 			ConnectionManager cm = new ConnectionManager();
 			ResultSet myRs = null;
@@ -62,7 +62,7 @@ public class ServletTestList extends HttpServlet {
 				} else {
 					response.setContentType("application/json");
 					PrintWriter out = response.getWriter();
-					out.println("{\"message\" : \"You're fucked\"}"); 
+					out.println("{\"message\" : \"You're tested\"}"); 
 				}
 				
 			} catch (SQLException e) {
