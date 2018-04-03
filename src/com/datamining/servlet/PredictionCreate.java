@@ -61,8 +61,8 @@ public class PredictionCreate extends HttpServlet {
 		PreparedStatement psmt = null;
 		FileOutputStream output = null;
 		byte[] buffer = new byte[4096];
-		String trainFileString = "https://weka-tutorial.azurewebsites.net/assets/files/trainData.csv";
-		String testFileString = "https://weka-tutorial.azurewebsites.net/assets/files/testData.csv";
+		String trainFileString = "D:/home/site/wwwroot/webapps/ROOT/assets/files/trainData.csv";
+		String testFileString = "D:/home/site/wwwroot/webapps/ROOT/assets/files/testData.csv";
 		File trainFile = new File(trainFileString);
 		File testFile = new File(testFileString);
 		try {

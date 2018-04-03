@@ -74,7 +74,7 @@ public class TaskUpdate extends HttpServlet {
 				String taskName = myRs.getString("task_name");
 				InputStream is = null;
 				CSVWriter cw = new CSVWriter(request);
-				String uploadData = "https://weka-tutorial.azurewebsites.net/assets/files/uploadTask.csv";
+				String uploadData = "D:/home/site/wwwroot/webapps/ROOT/assets/files/uploadTask.csv";
 				cw.createCSV4(uploadData);
 				is = new FileInputStream(new File(uploadData));
 				

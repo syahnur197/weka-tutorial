@@ -54,7 +54,7 @@ public class TaskView extends HttpServlet {
 			FileOutputStream output = null;
 			PrintWriter out = response.getWriter();
 			byte[] buffer = new byte[4096];
-			File file = new File("https://weka-tutorial.azurewebsites.net/assets/files/taskData.csv");
+			File file = new File("D:/home/site/wwwroot/webapps/ROOT/assets/files/taskData.csv");
 			try {
 				psmt = cm.getPreparedStatement(sql);
 				psmt.setInt(1, task_id);

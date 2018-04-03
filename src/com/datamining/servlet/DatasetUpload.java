@@ -67,7 +67,7 @@ public class DatasetUpload extends HttpServlet {
 			}		
 		} else if (submitValue.equals("Upload as CSV")) {
 			CSVWriter cw = new CSVWriter(request);
-			String uploadData = "https://weka-tutorial.azurewebsites.net/assets/files/uploadData.csv";
+			String uploadData = "D:/home/site/wwwroot/webapps/ROOT/assets/files/uploadData.csv";
 			cw.createCSV3(uploadData);
 			is = new FileInputStream(new File(uploadData));
 		}

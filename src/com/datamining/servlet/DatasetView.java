@@ -56,7 +56,7 @@ public class DatasetView extends HttpServlet {
 			FileOutputStream output = null;
 			PrintWriter out = response.getWriter();
 			byte[] buffer = new byte[4096];
-			File file = new File("https://weka-tutorial.azurewebsites.net/assets/files/data.csv");
+			File file = new File("D:/home/site/wwwroot/webapps/ROOT/assets/files/data.csv");
 			try {
 				psmt = cm.getPreparedStatement(sql);
 				psmt.setInt(1, dataset_id);
@@ -87,25 +87,25 @@ public class DatasetView extends HttpServlet {
 		            	 tableString += "<tr>";
 		                 for (int i = 0; i < nextLine.length; i++) {
 		                	 tableString += "<td style='width:150px'><span class='valueCell'>"+nextLine[i] + "</span> ";
-		                	 for (int j = 0; j < atts.length; j++) {
-		         				String att = atts[j].trim();
-		         				int indexOfBracket = att.indexOf('[');
-		         				if ( indexOfBracket < 0 && j == i){
-		         					tableString += "<input type='text' name='"+att+"' class='form-control' style='display:none' value='" + nextLine[i] + "'/>";
-		         				} else if (j == i) {
-		         					String attName = att.substring(0, indexOfBracket);
-		         					String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
-		         					tableString += "<select class='form-control' name='"+attName+"' style='display:none'>";
-		         					for (int k = 0; k < nominalValues.length; k++) {
-		         						String chosen = "";
-		         						if (nominalValues[k].equals(nextLine[i])) {
-		         							chosen = "selected";
-		         						}
-		         						tableString += "<option " + chosen + ">"+nominalValues[k]+"</option>";
-		         					}
-		         					tableString += "</select>";
-		         				}
-		         			}
+//		                	 for (int j = 0; j < atts.length; j++) {
+//		         				String att = atts[j].trim();
+//		         				int indexOfBracket = att.indexOf('[');
+//		         				if ( indexOfBracket < 0 && j == i){
+//		         					tableString += "<input type='text' name='"+att+"' class='form-control' style='display:none' value='" + nextLine[i] + "'/>";
+//		         				} else if (j == i) {
+//		         					String attName = att.substring(0, indexOfBracket);
+//		         					String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
+//		         					tableString += "<select class='form-control' name='"+attName+"' style='display:none'>";
+//		         					for (int k = 0; k < nominalValues.length; k++) {
+//		         						String chosen = "";
+//		         						if (nominalValues[k].equals(nextLine[i])) {
+//		         							chosen = "selected";
+//		         						}
+//		         						tableString += "<option " + chosen + ">"+nominalValues[k]+"</option>";
+//		         					}
+//		         					tableString += "</select>";
+//		         				}
+//		         			}
 		                	 tableString += "</td>";
 		                 }
 		                 tableString += "</tr>";

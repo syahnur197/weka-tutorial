@@ -54,7 +54,7 @@ public class DatasetUpdate extends HttpServlet {
 		ConnectionManager cm = new ConnectionManager();
 		String sql = "UPDATE `dataset` SET `dataset_file` = ? WHERE `dataset_id` = ?";
 		CSVWriter cw = new CSVWriter(request);
-		String updateData = "https://weka-tutorial.azurewebsites.net/assets/files/updateData.csv";
+		String updateData = "D:/home/site/wwwroot/webapps/ROOT/assets/files/updateData.csv";
 		cw.createCSV3(updateData);
 		is = new FileInputStream(new File(updateData));
 		try {
