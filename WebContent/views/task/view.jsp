@@ -44,7 +44,7 @@
 								<div class="table-responsive">
 									<table class='table table-striped table-bordered table-hover' id="predictionTable">
 										<tr>
-											<th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (NB)</th><th>NB Matches</th>
+											<th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (BN)</th><th>BN Matches</th>
 										</tr>
 										<%= tableString %>
 									</table>
@@ -107,12 +107,12 @@
 	
 		var data = google.visualization.arrayToDataTable([
 			['Label', 'Numbers'],
-			['NB Matches',     NBMatches],
-			['NB Unmatches',      NBUnmatches]
+			['BN Matches',     NBMatches],
+			['BN Unmatches',      NBUnmatches]
 		]);
 		
 		var options = {
-			title: 'NB Prediction Result Pie Chart',
+			title: 'BN Prediction Result Pie Chart',
 			width: $(window).width(),
 			height: $(window).height()*0.75
 		};

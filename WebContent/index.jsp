@@ -102,7 +102,25 @@
 			<!-- /# column -->
 		</div>
 		<div class="row" id="create-task-workflow" style="display:none;">
-			<div class="col-lg-12">
+		
+			<div class="col-lg-4">
+				<div class="card">
+					<div class="card-title">
+						<h4>Task Creation Work Flow</h4>
+					</div>
+					<div class="card-body">
+						<ul class="list-group">
+							<li class="list-group-item active workflow-list" id="structure-workflow-list">1. Select or Create Structure</li>
+							<li class="list-group-item workflow-list" id="training-workflow-list">2. Select or Create Training Data Set</li>
+							<li class="list-group-item workflow-list" id="testing-workflow-list">3. Select or Create Testing Data Set</li>
+							<li class="list-group-item workflow-list" id="create-task-workflow-list">4. Submit Create Task</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		
+			
+			<div class="col-lg-8">
 				<div class="card">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" id="dashboardTab">
@@ -129,14 +147,14 @@
 						<div class="tab-pane container card" id="selectTrain">
 							<div class="card-body">
 								<h4 class="selected-structure-name">{{ structure is not yet selected }}</h4>
-								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1'>Create Structure</button></a>
+								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-train-list-group"></ul>
 							</div>
 						</div>
 						<div class="tab-pane container card" id="selectTest">
 							<div class="card-body">
 								<h4 class="selected-structure-name">{{ structure is not yet selected }}</h4>
-								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1'>Create Structure</button></a>
+								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-test-list-group"></ul>
 								<form method="post" action="http://localhost:8080/weka-tutorial/PredictionCreate" style="display:none;" id="create-task-form">
 									<input type="hidden" name="trainingData" id="trainingData" value="" />
@@ -238,6 +256,8 @@
 	}
 	
 	function selectStructure(count) {
+		$(".workflow-list").removeClass('active');
+		$("#training-workflow-list").addClass('active');
 		$('#dashboardTab a[href="#selectTrain"]').tab('show');
 		$("#create-task-form").hide();
 		var structureName = structure[count].getName();
@@ -246,8 +266,8 @@
 		var string = "";
 		for(var i = 0; i < Object.keys(dataset).length; i++) {
 			if(dataset[i].getStructureId() == structureId) {
-				string += "<li class='list-group-item'>"+dataset[i].getName()
-				+ "<button onclick='selectTrain("+dataset[i].getId()+", "+count+")' class='btn btn-warning float-right'>Select Train Data</button>"
+				string += "<li class='list-group-item'> <a href='http://localhost:8080/weka-tutorial/DatasetView?dataset_id="+dataset[i].getId()+"'>"+dataset[i].getName()
+				+ "</a><button onclick='selectTrain("+dataset[i].getId()+", "+count+")' class='btn btn-warning float-right'>Select Train Data</button>"
 				+ "</li>";
 			}
 		}
@@ -258,6 +278,8 @@
 	}
 	
 	function selectTrain(train_id, count) {
+		$(".workflow-list").removeClass('active');
+		$("#testing-workflow-list").addClass('active');
 		$('#dashboardTab a[href="#selectTest"]').tab('show');
 		$("#create-task-form").hide();
 		$("#trainingData").val(train_id);
@@ -267,8 +289,8 @@
 		var string = "";
 		for(var i = 0; i < Object.keys(dataset).length; i++) {
 			if(dataset[i].getStructureId() == structureId && dataset[i].getId() != train_id) {
-				string += "<li class='list-group-item''>"+dataset[i].getName()
-				+ "<button onclick='selectTest("+dataset[i].getId()+")' class='btn btn-success float-right'>Select Test Data</button>"
+				string += "<li class='list-group-item'><a href='http://localhost:8080/weka-tutorial/DatasetView?dataset_id="+dataset[i].getId()+"'>"+dataset[i].getName()
+				+ "</a><button onclick='selectTest("+dataset[i].getId()+")' class='btn btn-success float-right'>Select Test Data</button>"
 				+ "</li>";
 			}
 		}
@@ -280,6 +302,8 @@
 	}
 	
 	function selectTest(test_id) {
+		$(".workflow-list").removeClass('active');
+		$("#create-task-workflow-list").addClass('active');
 		$("#create-task-form").show();
 		$("#testingData").val(test_id);
 	}

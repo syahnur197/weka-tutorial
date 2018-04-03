@@ -29,7 +29,7 @@
 							<div class='table-responsive'>
 								<table class='table table-striped table-hover' id="predictionTable" style='text-align: center'>
 									<tr>
-										<th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (NB)</th><th>NB Matches</th>
+										<th>Student No</th><th>Actual Grade</th><th>Predicted Grade (J48)</th><th>J48 Matches</th><th>Predicted Grade (BN)</th><th>BN Matches</th>
 									</tr>
 									<%= table %>
 								</table>
@@ -37,7 +37,7 @@
 							<%= percentage %>
 							<hr>
 							<button type="button" class='btn btn-primary mx-1' onclick="drawJ48Chart();">Show J48 Pie Chart</button>
-							<button type="button" class='btn btn-primary mx-1' onclick="drawNBChart();">Show NB Pie Chart</button>
+							<button type="button" class='btn btn-primary mx-1' onclick="drawNBChart();">Show BN Pie Chart</button>
 							<input type="hidden" name="trainDataset_id" value="<%= trainDataset_id %>" />
 							<input type="hidden" name="testDataset_id" value="<%= testDataset_id %>" />
 							<input type="text" name="taskName" id="taskName" value="" placeholder="Enter Task Name" class="form-control mt-3" required/>
@@ -96,12 +96,12 @@
 	
 		var data = google.visualization.arrayToDataTable([
 			['Label', 'Numbers'],
-			['NB Matches',     NBMatches],
-			['NB Unmatches',      NBUnmatches]
+			['BN Matches',     NBMatches],
+			['BN Unmatches',      NBUnmatches]
 		]);
 		
 		var options = {
-			title: 'NB Prediction Result Pie Chart',
+			title: 'BN Prediction Result Pie Chart',
 			width: $(window).width(),
 			height: $(window).height()*0.75
 		};

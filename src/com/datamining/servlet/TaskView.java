@@ -72,10 +72,10 @@ public class TaskView extends HttpServlet {
 					String [] nextLine;
 					String tableString = "";
 					int count = 0;
-					int noOfMatchesJ48 = 0;
-					int noOfUnmatchesJ48 = 0;
-					int noOfMatchesNB = 0;
-					int noOfUnmatchesNB = 0;
+					float noOfMatchesJ48 = 0;
+					float noOfUnmatchesJ48 = 0;
+					float noOfMatchesNB = 0;
+					float noOfUnmatchesNB = 0;
 					String percentageString = "";
 					while ((nextLine = reader.readNext()) != null) {
 						String colourJ48 = "";
@@ -100,20 +100,20 @@ public class TaskView extends HttpServlet {
 						tableString += "<td id='nb_" + count + "'>" + nextLine[3].trim() + "<input type='hidden' name='nbClass' value='" + nextLine[3].trim() + "' /></td><td style='color: " + colourNB + "; text-align: center;' id='nbColor_" + count + "'>" + nextLine[4].trim() + "<input type='hidden' name='nbClassMatch' value='" + nextLine[4].trim() + "' /></td>";
 						tableString += "</tr>";
 					}
-					int totalJ48 = noOfMatchesJ48 + noOfUnmatchesJ48;
-					double percentJ48 = (noOfMatchesJ48 * 100) / totalJ48;
+					float totalJ48 = noOfMatchesJ48 + noOfUnmatchesJ48;
+					float percentJ48 = (noOfMatchesJ48 * 100) / totalJ48;
 
-					int totalNB = noOfMatchesNB + noOfUnmatchesNB;
-					double percentNB = (noOfMatchesNB * 100) / totalNB;
+					float totalNB = noOfMatchesNB + noOfUnmatchesNB;
+					float percentNB = (noOfMatchesNB * 100) / totalNB;
 					percentageString += "<hr>";
-					percentageString += "<div class='row'>Number of J48 matches: \t <span id='j48Matches'>" + noOfMatchesJ48 + "</span></div>";
-					percentageString += "<div class='row'>Number of J48 unmatches: \t <span id='j48Unmatches'>" + noOfUnmatchesJ48 + "</span></div>";
-					percentageString += "<div class='row'>% of J48 Matches: \t <span id='j48Percent'>" + percentJ48 + "</span>%</div>";
+					percentageString += "<div class='row'>Number of J48 matches: \t <span id='j48Matches'>" + (int)noOfMatchesJ48 + "</span></div>";
+					percentageString += "<div class='row'>Number of J48 unmatches: \t <span id='j48Unmatches'>" + (int)noOfUnmatchesJ48 + "</span></div>";
+					percentageString += "<div class='row'>% of J48 Matches: \t <span id='j48Percent'>" + String.format("%.1f",percentJ48) + "</span>%</div>";
 					percentageString += "<button type=\"button\" class='btn btn-primary mx-1' onclick=\"drawJ48Chart();\">Show J48 Pie Chart</button>";
 					percentageString += "<hr>";
-					percentageString += "<div class='row'>Number of Naive Bayes matches: \t <span id='nbMatches'>" + noOfMatchesNB + "</span></div>";
-					percentageString += "<div class='row'>Number of Naive Bayes unmatches: \t <span id='nbUnmatches'>" + noOfUnmatchesNB + "</span></div>";
-					percentageString += "<div class='row'>% of Naive Bayes Matches: \t <span id='nbPercent'>" + percentNB + "</span>%</div>";
+					percentageString += "<div class='row'>Number of Bayes Net matches: \t <span id='nbMatches'>" + (int)noOfMatchesNB + "</span></div>";
+					percentageString += "<div class='row'>Number of Bayes Net unmatches: \t <span id='nbUnmatches'>" + (int)noOfUnmatchesNB + "</span></div>";
+					percentageString += "<div class='row'>% of Bayes Net Matches: \t <span id='nbPercent'>" + String.format("%.1f",percentNB) + "</span>%</div>";
 					percentageString += "<button type=\"button\" class='btn btn-primary mx-1' onclick=\"drawNBChart();\">Show NB Pie Chart</button>";
 
 					request.setAttribute("percentageString", percentageString);

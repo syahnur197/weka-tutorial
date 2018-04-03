@@ -26,7 +26,7 @@ public class ConnectionManager {
 	
 	public PreparedStatement getPreparedStatement(String sql) {
 		try {
-			return conn.prepareStatement(sql);
+			return getConnection().prepareStatement(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
