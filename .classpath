@@ -13,17 +13,45 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Program Files/Weka-3-8/weka.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/gson-2.8.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/java-json.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar">
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.9.3.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/opencsv-4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/commons-lang3-3.7/commons-lang3-3.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/commons-beanutils-1.9.3/commons-beanutils-1.9.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Syahnur197/Downloads/commons-text-1.2/commons-text-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang3-3.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-text-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.8.2-javadoc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/java-json.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.45-bin.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/opencsv-4.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/weka.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

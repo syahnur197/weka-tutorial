@@ -2,27 +2,6 @@
     <wb-module deploy-name="weka-tutorial">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="weka.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Program Files/Weka-3-8/weka.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="json-simple-1.1.1.jar.zip" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Syahnur197/Downloads/json-simple-1.1.1.jar.zip">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="gson-2.8.2-javadoc.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Syahnur197/Downloads/gson-2.8.2-javadoc.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="opencsv-4.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Syahnur197/Downloads/opencsv-4.1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="commons-lang3-3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Syahnur197/Downloads/commons-lang3-3.7/commons-lang3-3.7.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="commons-text-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Syahnur197/Downloads/commons-text-1.2/commons-text-1.2.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="commons-beanutils-1.9.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Syahnur197/Downloads/commons-beanutils-1.9.3/commons-beanutils-1.9.3.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="weka-tutorial"/>
         <property name="java-output-path" value="/weka-tutorial/build/classes"/>
     </wb-module>
