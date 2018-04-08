@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 import weka.classifiers.Classifier;
 import weka.classifiers.bayes.BayesNet;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.bayes.NaiveBayesUpdateable;
 import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.misc.InputMappedClassifier;
 import weka.classifiers.trees.DecisionStump;
 import weka.classifiers.trees.J48;
 import weka.classifiers.trees.REPTree;
@@ -21,19 +23,29 @@ import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Standardize;
 
 public class Prediction {
 
 	public static void main(String[] args) throws Exception {
 		DataSource trainSource = new DataSource("C:/Users/Syahnur197/Desktop/weka_data_set/students-grade.csv");
-		Instances trainingDataSet = trainSource.getDataSet();
-		trainingDataSet.setClassIndex(trainingDataSet.numAttributes() - 1);
+		Instances train = trainSource.getDataSet();
+		train.setClassIndex(train.numAttributes() - 1);
 		
 		DataSource testSource = new DataSource("C:/Users/Syahnur197/Desktop/weka_data_set/students-grade-test.csv");
-		Instances testingDataSet = testSource.getDataSet();
-		testingDataSet.setClassIndex(testingDataSet.numAttributes() - 1);
+		Instances test = testSource.getDataSet();
+		test.setClassIndex(test.numAttributes() - 1);
 		
-		NaiveBayesUpdateable classifier = new NaiveBayesUpdateable();
+		InputMappedClassifier classifier = new InputMappedClassifier();
+		classifier.setClassifier(new J48());
+		
+		Instances trainingDataSet = train;
+		Instances testingDataSet = test;
+		
+		// InputMappedClassifier classifier = new InputMappedClassifier();
+		// classifier.setClassifier(new weka.classifiers.trees.J48());
+		//J48 classifier = new J48();
 		classifier.buildClassifier(trainingDataSet);
 		
 		float matched = 0;
@@ -119,8 +131,10 @@ public class Prediction {
 		train.setClassIndex(train.numAttributes() - 1);
 		test.setClassIndex(test.numAttributes() - 1);
 
-		J48 cls = new J48();
+		//J48 cls = new J48();
 		//tree.setOptions(options);
+		InputMappedClassifier cls = new InputMappedClassifier();
+		cls.setClassifier(new J48());
 		cls.buildClassifier(train);
 		
 		
@@ -158,7 +172,9 @@ public class Prediction {
 		test.setClassIndex(test.numAttributes() - 1);
 		
 		// build a classifier
-		BayesNet cls = new BayesNet();
+		// BayesNet cls = new BayesNet();
+		InputMappedClassifier cls = new InputMappedClassifier();
+		cls.setClassifier(new RandomTree());
 		cls.buildClassifier(train);
 		
 		for (int i = 0; i < test.numInstances(); i++) {
