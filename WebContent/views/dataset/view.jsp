@@ -1,6 +1,7 @@
 <jsp:include page="../new-layout/header.jsp" />
 	<%
 		String tableString = request.getAttribute("tableString").toString();
+		String tableContent = request.getAttribute("tableContent").toString();
 		int dataset_id = (int) request.getAttribute("dataset_id");
 		String elapsed = request.getAttribute("elapsed").toString();
 	%>
@@ -44,11 +45,12 @@
 							<form id='updateDataset' method="post" action="DatasetUpdate">
 								<input type='button' value='Edit Cells' id='edit_cells' class='btn btn-block btn-warning my-2'/>
 								<div class="table-responsive">
-									<table class='table table-striped table-bordered table-hover' style="table-layout:fixed;">
+									<table class='table table-striped table-bordered table-hover' style="table-layout:fixed;" id="instances_table">
 										<%= tableString %>
 									</table>
 								</div>
 								<input type='hidden' name='dataset_id' value='<%= dataset_id %>' />
+								<button id="addInstanceButton" onclick='addInstance()' type="button" class='btn btn-block btn-primary mt-2' style="display: none;">Add Instance</button>
 								<input type='submit' id="submitButton" name='submit' value='Update' class='btn btn-block btn-success my-3' style="display:none;"/>
 							</form>
 						</div>
@@ -59,6 +61,10 @@
    	</div>
 <jsp:include page="../new-layout/footer.jsp" />
 <script>
+	function addInstance() {
+		console.log("<%= tableContent%>");
+		$("#instances_table").append("<tr><%= tableContent%></tr>");
+	}
 	$(function() {
 		$("#edit_cells").on('click', function() {
 			$(this).hide();
@@ -68,6 +74,7 @@
 			$('.valueCell').hide();
 			$('.valueCell').next().show();
 			$("#submitButton").show();
+			$("#addInstanceButton").show();
 		});
 	});
 </script>

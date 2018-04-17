@@ -115,6 +115,35 @@ public class Prediction {
 
 	}
 	
+	public  ArrayList<String> RFtrainAndTest(String trainString, String testString) throws Exception {
+		ArrayList<String> predictionList = new ArrayList<String>();
+		
+		DataSource trainSource = new DataSource(trainString);
+		DataSource testSource = new DataSource(testString);
+		
+		// get instances
+
+		Instances train = trainSource.getDataSet();
+		Instances test = testSource.getDataSet();
+		
+		// set the class
+		train.setClassIndex(train.numAttributes() - 1);
+		test.setClassIndex(test.numAttributes() - 1);
+
+		InputMappedClassifier cls = new InputMappedClassifier();
+		cls.setClassifier(new RandomForest());
+		cls.buildClassifier(train);
+		
+		// make prediction
+		Evaluation eval = new Evaluation(train);
+		eval.evaluateModel(cls, test);
+
+		for (int i = 0; i < eval.predictions().size(); i++) {
+			double index = cls.classifyInstance(test.instance(i));
+			predictionList.add(train.classAttribute().value((int) index));
+		}
+		return predictionList;
+	}
 	
 	public  ArrayList<String> J48trainAndTest(String trainString, String testString) throws Exception {
 		ArrayList<String> predictionList = new ArrayList<String>();
@@ -131,27 +160,17 @@ public class Prediction {
 		train.setClassIndex(train.numAttributes() - 1);
 		test.setClassIndex(test.numAttributes() - 1);
 
-		//J48 cls = new J48();
-		//tree.setOptions(options);
 		InputMappedClassifier cls = new InputMappedClassifier();
 		cls.setClassifier(new J48());
 		cls.buildClassifier(train);
 		
-		
-		
-		// build a classifier
-//		Classifier cls = new J48();
-//		cls.buildClassifier(train);
-		
 		// make prediction
 		Evaluation eval = new Evaluation(train);
 		eval.evaluateModel(cls, test);
-//		eval.crossValidateModel(cls, train, 10, new java.util.Random(1));
 
 		for (int i = 0; i < eval.predictions().size(); i++) {
 			double index = cls.classifyInstance(test.instance(i));
 			predictionList.add(train.classAttribute().value((int) index));
-//			System.out.println(index + " -> " + train.classAttribute().value((int) index));
 		}
 		return predictionList;
 	}
@@ -174,7 +193,7 @@ public class Prediction {
 		// build a classifier
 		// BayesNet cls = new BayesNet();
 		InputMappedClassifier cls = new InputMappedClassifier();
-		cls.setClassifier(new RandomTree());
+		cls.setClassifier(new BayesNet());
 		cls.buildClassifier(train);
 		
 		for (int i = 0; i < test.numInstances(); i++) {

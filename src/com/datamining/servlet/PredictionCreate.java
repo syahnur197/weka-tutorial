@@ -95,6 +95,7 @@ public class PredictionCreate extends HttpServlet {
 			ArrayList < String > NBpredictionList = new ArrayList < String > ();
 			ArrayList < String > actualList = new ArrayList < String > ();
 			try {
+//				J48predictionList = prediction.RFtrainAndTest(trainFileString, testFileString);
 				J48predictionList = prediction.J48trainAndTest(trainFileString, testFileString);
 				NBpredictionList = prediction.NBtrainAndTest(trainFileString, testFileString);
 				actualList = prediction.actualGrade(testFileString);
