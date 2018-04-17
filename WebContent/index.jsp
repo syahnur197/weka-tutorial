@@ -157,6 +157,7 @@
 								<a href="https://weka-tutorial.azurewebsites.net/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-test-list-group"></ul>
 								<form method="post" action="https://weka-tutorial.azurewebsites.net/PredictionCreate" style="display:none;" id="create-task-form">
+									<input type="hidden" name="trainingData" id="trainingData" value="" />
 									<input type="hidden" name="testingData" id="testingData" value="" />
 									<input type="submit" value="Submit" class="btn btn-success btn-block"/>
 								</form>
