@@ -70,26 +70,7 @@ public class DatasetView extends HttpServlet {
 						output.write(buffer, 0, b);
 					}
 					output.close();
-					String tableContent = "";
 					String[] atts = structureString.split(",");
-					 for (int i = 0; i < atts.length; i++) {
-			              tableContent += "<td style='width:150px'>";
-			              String att = atts[i].trim();
-			              int indexOfBracket = att.indexOf('[');
-			              if ( indexOfBracket < 0){//numeric or something else
-			            	  tableContent += "<input type='text' name='"+att+"' class='form-control'/>";
-			              } else {//it's a nominal attribute
-			                   String attName = att.substring(0, indexOfBracket);
-			                   String[] nominalValues = att.substring(indexOfBracket+1, att.length()-1).split(";");
-			                   tableContent += "<select class='form-control' name='"+attName+"'>";
-			                   for (int j = 0; j < nominalValues.length; j++) {
-			                	   tableContent += "<option>"+nominalValues[j]+"</option>";
-			                   }
-			                   tableContent += "</select>";
-			              }
-			         }
-			         // tableContent += "<td style='width:150px'><input type='button' value='Delete Row' class='btn btn-block btn-danger'/></td>";
-			         request.setAttribute("tableContent", tableContent);
 					
 					CSVReader reader = new CSVReader(new FileReader(file));
 		            String [] nextLine;

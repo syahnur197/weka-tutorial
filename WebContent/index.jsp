@@ -140,39 +140,23 @@
 						<div class="tab-pane active container card" id="selectStructure">
 							<div class="card-body">
 								<h4>Please select the structure</h4>
-<<<<<<< HEAD
 								<a href="https://weka-tutorial.azurewebsites.net/views/structure/create.jsp"><button class='btn btn-primary my-1'>Create Structure</button></a>	
-=======
-								<a href="http://localhost:8080/weka-tutorial/views/structure/create.jsp"><button class='btn btn-primary my-1 create'>Create Structure</button></a>	
->>>>>>> master
 								<ul class="list-group" id="structure-list-group"></ul>
 							</div>
 						</div>
 						<div class="tab-pane container card" id="selectTrain">
 							<div class="card-body">
 								<h4 class="selected-structure-name">{{ structure is not yet selected }}</h4>
-<<<<<<< HEAD
 								<a href="https://weka-tutorial.azurewebsites.net/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-train-list-group"></ul>
-=======
-								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1 create' >Create Data Set</button></a>
-								<ul class="list-group" id="all-dataset-train-list-group" class="training-ul"></ul>
->>>>>>> master
 							</div>
 						</div>
 						<div class="tab-pane container card" id="selectTest">
 							<div class="card-body">
 								<h4 class="selected-structure-name">{{ structure is not yet selected }}</h4>
-<<<<<<< HEAD
 								<a href="https://weka-tutorial.azurewebsites.net/DatasetCreate"><button class='btn btn-primary my-1'>Create Data Set</button></a>
 								<ul class="list-group" id="all-dataset-test-list-group"></ul>
 								<form method="post" action="https://weka-tutorial.azurewebsites.net/PredictionCreate" style="display:none;" id="create-task-form">
-=======
-								<a href="http://localhost:8080/weka-tutorial/DatasetCreate"><button class='btn btn-primary my-1 create' >Create Data Set</button></a>
-								<ul class="list-group" id="all-dataset-test-list-group" class='testing-ul'></ul>
-								<form method="post" action="http://localhost:8080/weka-tutorial/PredictionCreate" style="display:none;" id="create-task-form" class="my-2">
->>>>>>> master
-									<input type="hidden" name="trainingData" id="trainingData" value="" />
 									<input type="hidden" name="testingData" id="testingData" value="" />
 									<input type="submit" value="Submit" class="btn btn-success btn-block"/>
 								</form>
