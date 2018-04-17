@@ -68,7 +68,7 @@ public class DatasetInsertForm extends HttpServlet {
 					String tableContent = "";
 					String tableHeader = "";
 					String[] atts = structureString.split(",");
-			         for (int i = 0; i < atts.length; i++) {
+			        for (int i = 0; i < atts.length; i++) {
 			              tableContent += "<td style='width:150px'>";
 			              String att = atts[i].trim();
 			              int indexOfBracket = att.indexOf('[');
