@@ -42,7 +42,7 @@
 						</div>
 						<div class="card-body">
 							<form id='updateDataset' method="post" action="https://weka-tutorial.azurewebsites.net/DatasetUpdate">
-								<input type='button' value='Edit Cells' id='edit_cells' class='btn btn-block btn-warning my-2'/>
+								<!-- input type='button' value='Edit Cells' id='edit_cells' class='btn btn-block btn-warning my-2'/-->
 								<div class="table-responsive">
 									<table class='table table-striped table-bordered table-hover' style="table-layout:fixed;" id="instances_table">
 										<%= tableString %>
@@ -60,15 +60,15 @@
 <jsp:include page="../new-layout/footer.jsp" />
 <script>
 	$(function() {
-		$("#edit_cells").on('click', function() {
+/* 		$("#edit_cells").on('click', function() {
 			$(this).hide();
 			/*$.map($('.valueCell'), function (el) { 
 				el.nextElementSibling.value = el.textContent;
-			});*/
+			});
 			$('.valueCell').hide();
 			$('.valueCell').next().show();
 			$("#submitButton").show();
 			$("#addInstanceButton").show();
-		});
+		}); */
 	});
 </script>
